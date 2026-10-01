@@ -130,14 +130,9 @@
     <header class="relative w-full h-[70vh] sm:h-[85vh] overflow-hidden flex items-center justify-center">
         <!-- YouTube Background Video Container -->
         <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
-            <iframe id="hero-bg-video" 
-                class="w-[300%] h-[300%] sm:w-[150%] sm:h-[150%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-40 scale-125 filter blur-[1px] brightness-90"
-                src="" 
-                title="RIIZE MV Background"
-                frameborder="0" 
-                allow="autoplay; encrypted-media" 
-                allowfullscreen>
-            </iframe>
+            <div id="hero-bg-video" 
+                class="w-[300%] h-[300%] sm:w-[150%] sm:h-[150%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-40 scale-125 filter blur-[1px] brightness-90">
+            </div>
         </div>
 
         <!-- Dark Gradient Overlay for Readability -->
@@ -439,6 +434,9 @@
         </div>
     </footer>
 
+    <!-- YouTube IFrame API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <!-- JavaScript Application Logic -->
     <script>
         /* =======================================================
@@ -579,7 +577,7 @@
         }
 
         /* =======================================================
-           1. HERO BANNER - YOUTUBE RANDOM MV PLAYER
+           1. HERO BANNER - YOUTUBE RANDOM MV PLAYER (Muted Autoplay)
            ======================================================= */
         const riizeMvPlaylist = [
             { id: 'RsDXsGIst-s', title: 'Get A Guitar' },
@@ -592,18 +590,61 @@
         ];
 
         let currentVideoIndex = -1;
+        let player;
 
-        function setRandomHeroVideo() {
+        // ฟังก์ชัน callback เมื่อ YouTube IFrame API พร้อมใช้งาน
+        function onYouTubeIframeAPIReady() {
+            const initialIndex = getNextRandomIndex();
+            currentVideoIndex = initialIndex;
+
+            player = new YT.Player('hero-bg-video', {
+                videoId: riizeMvPlaylist[currentVideoIndex].id,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'mute': 1,
+                    'playsinline': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'modestbranding': 1,
+                    'disablekb': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.mute();
+            event.target.playVideo();
+            updateHeroBannerTitle();
+        }
+
+        // เมื่อวิดีโอเล่นจบ ให้สุ่มวิดีโอถัดไปทันที
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                changeHeroVideo();
+            }
+        }
+
+        function getNextRandomIndex() {
             let randomIndex;
             do {
                 randomIndex = Math.floor(Math.random() * riizeMvPlaylist.length);
             } while (randomIndex === currentVideoIndex && riizeMvPlaylist.length > 1);
-            
-            currentVideoIndex = randomIndex;
-            const iframe = document.getElementById('hero-bg-video');
-            const selectedMV = riizeMvPlaylist[currentVideoIndex];
+            return randomIndex;
+        }
 
-            iframe.src = `https://www.youtube.com/embed/${selectedMV.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${selectedMV.id}&enablejsapi=1`;
+        function changeHeroVideo() {
+            currentVideoIndex = getNextRandomIndex();
+            const selectedMV = riizeMvPlaylist[currentVideoIndex];
+            
+            if (player && typeof player.loadVideoById === 'function') {
+                player.loadVideoById({ videoId: selectedMV.id });
+                player.mute();
+            }
             updateHeroBannerTitle();
         }
 
@@ -614,10 +655,6 @@
                 const prefix = i18nDict[currentLang]['hero-playing-prefix'];
                 titleLabel.innerText = `${prefix}${selectedMV.title}`;
             }
-        }
-
-        function changeHeroVideo() {
-            setRandomHeroVideo();
         }
 
         /* =======================================================
@@ -1088,7 +1125,6 @@
 
         // Initialize application components on load
         window.addEventListener('load', () => {
-            setRandomHeroVideo();
             updatePageLanguage();
         });
     </script>
