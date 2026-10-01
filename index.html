@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIIZE (라이즈) - Official Fan Club BRIIZE</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font - Inter & Kanit for Thai support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        riize: {
+                            orange: '#FF5500',
+                            coral: '#FF7744',
+                            blue: '#0066FF',
+                            dark: '#0A0B0E',
+                            card: '#14161D',
+                            border: '#242834'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Kanit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0B0E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF5500;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF7744;
+        }
+        /* Glassmorphism background */
+        .glass-panel {
+            background: rgba(20, 22, 29, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 85, 0, 0.15);
+        }
+        .glass-panel-hover:hover {
+            border-color: rgba(255, 85, 0, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(255, 85, 0, 0.2);
+        }
+        /* Gradient text */
+        .text-gradient {
+            background: linear-gradient(135deg, #FF5500 0%, #FF9900 50%, #0066FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-riize-dark text-gray-100 font-sans antialiased selection:bg-riize-orange selection:text-white">
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="sticky top-0 z-50 glass-panel border-b border-riize-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center space-x-3">
+                    <a href="#" class="text-xl sm:text-2xl font-black tracking-tighter text-white">
+                        Fanclub Site for <span class="text-riize-orange">RIIZE</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8 text-sm font-semibold">
+                    <a href="#members" class="hover:text-riize-orange transition-colors">ประวัติเมมเบอร์</a>
+                    <a href="#discography" class="hover:text-riize-orange transition-colors">ผลงานของวง</a>
+                    <a href="#awards" class="hover:text-riize-orange transition-colors">รางวัลที่ได้รับ</a>
+                    <a href="#shows" class="hover:text-riize-orange transition-colors">รายการและวาไรตี้</a>
+                    <a href="#social" class="hover:text-riize-orange transition-colors">ช่องทางการติดต่อ / Live Feed</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-riize-border focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-riize-border px-4 pt-2 pb-4 space-y-2">
+            <a href="#members" class="block px-3 py-2 rounded-md font-medium text-gray-200 hover:text-white hover:bg-riize-orange/20">ประวัติเมมเบอร์</a>
+            <a href="#discography" class="block px-3 py-2 rounded-md font-medium text-gray-200 hover:text-white hover:bg-riize-orange/20">ผลงานของวง</a>
+            <a href="#awards" class="block px-3 py-2 rounded-md font-medium text-gray-200 hover:text-white hover:bg-riize-orange/20">รางวัลที่ได้รับ</a>
+            <a href="#shows" class="block px-3 py-2 rounded-md font-medium text-gray-200 hover:text-white hover:bg-riize-orange/20">รายการและวาไรตี้</a>
+            <a href="#social" class="block px-3 py-2 rounded-md font-medium text-gray-200 hover:text-white hover:bg-riize-orange/20">ช่องทางการติดต่อ / Live Feed</a>
+        </div>
+    </nav>
+
+    <!-- Hero Banner with Dynamic YouTube Random Video Embed -->
+    <header class="relative w-full h-[70vh] sm:h-[85vh] overflow-hidden flex items-center justify-center">
+        <!-- YouTube Background Video Container -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+            <iframe id="hero-bg-video" 
+                class="w-[300%] h-[300%] sm:w-[150%] sm:h-[150%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-40 scale-125 filter blur-[1px] brightness-90"
+                src="" 
+                title="RIIZE MV Background"
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Dark Gradient Overlay for Readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-riize-dark via-riize-dark/60 to-transparent"></div>
+
+        <!-- Banner Overlay Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-4 sm:space-y-6">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-riize-orange/20 border border-riize-orange/50 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-riize-orange animate-ping"></span>
+                <span id="current-mv-title" class="text-xs sm:text-sm font-semibold text-riize-orange uppercase tracking-wider">กำลังเล่นสุ่มวิดีโอ MV บนหน้าเว็บ</span>
+            </div>
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight uppercase leading-none">
+                RISE & <span class="text-gradient">REALISE</span>
+            </h1>
+            <p class="text-lg sm:text-2xl text-gray-300 font-light max-w-2xl mx-auto">
+                ศูนย์รวมข้อมูลและคอนเทนต์วง <span class="font-bold text-white">RIIZE</span> สำหรับ <span class="text-riize-orange font-semibold">BRIIZE</span> ทั่วโลก
+            </p>
+            
+            <div class="pt-4 flex flex-wrap justify-center gap-4">
+                <a href="#members" class="px-6 py-3 rounded-full bg-riize-orange hover:bg-riize-coral text-white font-bold transition-all shadow-lg hover:shadow-riize-orange/50 hover:scale-105">
+                    ทำความรู้จักเมมเบอร์ <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <button onclick="changeHeroVideo()" class="px-6 py-3 rounded-full glass-panel hover:bg-white/10 text-white font-semibold transition-all hover:border-riize-orange">
+                    <i class="fas fa-random mr-2 text-riize-orange"></i> สุ่มวิดีโอ MV ถัดไป
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+
+        <!-- MEMBER PROFILES SECTION -->
+        <section id="members" class="scroll-mt-24">
+            <div class="text-center space-y-2 mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-riize-orange">MEMBER PROFILES</h2>
+                <h3 class="text-3xl sm:text-5xl font-extrabold">ประวัติเมมเบอร์ตั้งแต่อดีต - ปัจจุบัน</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">คลิกที่การ์ดของสมาชิกเพื่อเลือกดูประวัติ ข้อมูลส่วนตัว เส้นทางก่อนเดบิวต์ และตำแหน่งในวง</p>
+            </div>
+
+            <!-- Member Selector Cards -->
+            <div id="member-cards-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-8">
+                <!-- Dynamically generated via JS -->
+            </div>
+
+            <!-- Active Member Detail Showcase Box -->
+            <div id="member-detail-box" class="glass-panel rounded-2xl p-6 sm:p-10 transition-all duration-300">
+                <!-- Dynamically filled with selected member timeline and details -->
+            </div>
+        </section>
+
+        <!-- DISCOGRAPHY SECTION -->
+        <section id="discography" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-riize-orange">DISCOGRAPHY</h2>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold">ผลงานเพลงของวง</h3>
+                </div>
+                <p class="text-gray-400 mt-2 md:mt-0 text-sm sm:text-base">จากอัลบั้มเดบิวต์ Get A Guitar จนถึงมินิอัลบั้มล่าสุด RIIZING</p>
+            </div>
+
+            <!-- Discography Timeline Grid -->
+            <div id="discography-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically generated via JS -->
+            </div>
+        </section>
+
+        <!-- AWARDS & ACHIEVEMENTS SECTION -->
+        <section id="awards" class="scroll-mt-24">
+            <div class="text-center space-y-2 mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-riize-orange">AWARDS & ACHIEVEMENTS</h2>
+                <h3 class="text-3xl sm:text-5xl font-extrabold">รางวัลและความสำเร็จของวง</h3>
+            </div>
+
+            <!-- Stat Counters -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                <div class="glass-panel p-6 rounded-2xl text-center border-t-2 border-t-riize-orange">
+                    <p class="text-4xl sm:text-5xl font-black text-white mb-1">1,000,000+</p>
+                    <p class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">Million Seller Sales</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl text-center border-t-2 border-t-riize-orange">
+                    <p class="text-4xl sm:text-5xl font-black text-riize-orange mb-1">10+</p>
+                    <p class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">Rookie & Main Awards</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl text-center border-t-2 border-t-riize-orange">
+                    <p class="text-4xl sm:text-5xl font-black text-white mb-1">5+</p>
+                    <p class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">Music Show Trophy Wins</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl text-center border-t-2 border-t-riize-orange">
+                    <p class="text-4xl sm:text-5xl font-black text-riize-orange mb-1">#1</p>
+                    <p class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">Bugs & Melon Top Charts</p>
+                </div>
+            </div>
+
+            <!-- Detailed Award Categories Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Major Music Awards -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-3 text-riize-orange border-b border-riize-border/60 pb-3">
+                        <i class="fas fa-trophy text-2xl"></i>
+                        <h4 class="text-xl font-bold text-white">Award Shows & Main Ceremonies</h4>
+                    </div>
+                    <ul class="space-y-3 text-sm sm:text-base text-gray-300">
+                        <li class="flex justify-between items-start border-b border-riize-border/30 pb-2">
+                            <div>
+                                <p class="font-semibold text-white">MAMA Awards 2023</p>
+                                <p class="text-xs text-gray-400">Favorite New Artist</p>
+                            </div>
+                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2023</span>
+                        </li>
+                        <li class="flex justify-between items-start border-b border-riize-border/30 pb-2">
+                            <div>
+                                <p class="font-semibold text-white">Melon Music Awards (MMA 2023)</p>
+                                <p class="text-xs text-gray-400">New Artist of the Year (Rookie)</p>
+                            </div>
+                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2023</span>
+                        </li>
+                        <li class="flex justify-between items-start border-b border-riize-border/30 pb-2">
+                            <div>
+                                <p class="font-semibold text-white">Seoul Music Awards 2024</p>
+                                <p class="text-xs text-gray-400">Rookie of the Year & Bonsang</p>
+                            </div>
+                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2024</span>
+                        </li>
+                        <li class="flex justify-between items-start border-b border-riize-border/30 pb-2">
+                            <div>
+                                <p class="font-semibold text-white">Golden Disc Awards 2024</p>
+                                <p class="text-xs text-gray-400">Rookie Artist of the Year</p>
+                            </div>
+                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2024</span>
+                        </li>
+                        <li class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-white">CCMA (Circle Chart Music Awards)</p>
+                                <p class="text-xs text-gray-400">Rookie of the Year (Unique Streaming)</p>
+                            </div>
+                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2024</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Music Show Wins -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-3 text-riize-orange border-b border-riize-border/60 pb-3">
+                        <i class="fas fa-award text-2xl"></i>
+                        <h4 class="text-xl font-bold text-white">Music Show Wins (ถ้วยรายการเพลง)</h4>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-riize-orange">Love 119</span>
+                                <span class="text-xs text-gray-400">มกราคม 2024</span>
+                            </div>
+                            <p class="text-sm text-gray-300">อันดับ 1 ในรายการ Mnet <span class="text-white font-medium">M COUNTDOWN</span> (ถ้วยแรกหลังเดบิวต์)</p>
+                            <p class="text-sm text-gray-300">อันดับ 1 ในรายการ SBS <span class="text-white font-medium">Inkigayo</span></p>
+                        </div>
+
+                        <div class="bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-riize-orange">Boom Boom Bass</span>
+                                <span class="text-xs text-gray-400">มิถุนายน 2024</span>
+                            </div>
+                            <p class="text-sm text-gray-300">อันดับ 1 ในรายการ SBS M <span class="text-white font-medium">THE SHOW</span></p>
+                            <p class="text-sm text-gray-300">อันดับ 1 ในรายการ MBC M <span class="text-white font-medium">SHOW CHAMPION</span></p>
+                            <p class="text-sm text-gray-300">อันดับ 1 ในรายการ KBS <span class="text-white font-medium">Music Bank</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VARIETY SHOWS SECTION -->
+        <section id="shows" class="scroll-mt-24">
+            <div class="text-center space-y-2 mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-riize-orange">VARIETY SHOWS</h2>
+                <h3 class="text-3xl sm:text-5xl font-extrabold">รายการที่วงเคยไปร่วมรายการ</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">รวบรวมทั้งรายการออฟฟิเชียลของวงและรายการวาไรตี้ชื่อดัง</p>
+            </div>
+
+            <!-- Variety Grid Container -->
+            <div id="variety-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically generated via JS -->
+            </div>
+        </section>
+
+        <!-- OFFICIAL FEEDS SECTION -->
+        <section id="social" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-riize-orange">OFFICIAL FEEDS</h2>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold">ช่องทางการติดต่อ & Live Feed</h3>
+                    <p class="text-gray-400 text-sm sm:text-base mt-1">อัปเดตความเคลื่อนไหวจาก Official Accounts ของวง RIIZE แบบ Realtime</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center space-x-3">
+                    <button onclick="simulateLiveFeedRefresh()" class="px-4 py-2 rounded-lg bg-riize-orange hover:bg-riize-coral text-white text-sm font-semibold transition-all flex items-center space-x-2">
+                        <i id="refresh-icon" class="fas fa-sync-alt"></i>
+                        <span>ดึงอัปเดตคอนเทนท์ใหม่ (Demo)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Official Social Channel Badges -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                <a href="https://www.instagram.com/riize_official/" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-pink-500 transition-all group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 flex items-center justify-center text-white text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm group-hover:text-pink-400">Instagram</p>
+                        <p class="text-xs text-gray-400">@riize_official</p>
+                    </div>
+                </a>
+
+                <a href="https://twitter.com/RIIZE_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-blue-400 transition-all group">
+                    <div class="w-10 h-10 rounded-full bg-black border border-gray-700 flex items-center justify-center text-white text-lg">
+                        <i class="fab fa-x-twitter"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm group-hover:text-blue-400">X (Twitter)</p>
+                        <p class="text-xs text-gray-400">@RIIZE_official</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/@RIIZE_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-red-500 transition-all group">
+                    <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white text-lg">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm group-hover:text-red-400">YouTube</p>
+                        <p class="text-xs text-gray-400">@RIIZE_official</p>
+                    </div>
+                </a>
+
+                <a href="https://www.tiktok.com/@riize_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-teal-400 transition-all group">
+                    <div class="w-10 h-10 rounded-full bg-black border border-teal-500 flex items-center justify-center text-white text-lg">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm group-hover:text-teal-400">TikTok</p>
+                        <p class="text-xs text-gray-400">@riize_official</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Live Feed Grid Container -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Live Simulated Social Activity Feed -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col h-[520px]">
+                    <div class="flex items-center justify-between border-b border-riize-border/60 pb-4 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="relative flex h-3 w-3">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                            </span>
+                            <h4 class="font-bold text-white text-lg">RIIZE Realtime Feed</h4>
+                        </div>
+                        <span class="text-xs text-gray-400 font-mono">Auto-sync Active</span>
+                    </div>
+
+                    <!-- Scrollable Feeds Stream -->
+                    <div id="live-feed-stream" class="flex-1 overflow-y-auto space-y-4 pr-2">
+                        <!-- Feeds injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Twitter Official Embed Timeline Widget Container -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col h-[520px]">
+                    <div class="flex items-center justify-between border-b border-riize-border/60 pb-4 mb-4">
+                        <h4 class="font-bold text-white text-lg flex items-center space-x-2">
+                            <i class="fab fa-x-twitter text-riize-orange"></i>
+                            <span>Official X Timeline Feed</span>
+                        </h4>
+                        <span class="text-xs text-gray-400">@RIIZE_official</span>
+                    </div>
+
+                    <div class="flex-1 overflow-y-auto rounded-xl bg-black/40 p-2">
+                        <!-- Twitter Embed Widget -->
+                        <a class="twitter-timeline" data-theme="dark" data-height="420" href="https://twitter.com/RIIZE_official?ref_src=twsrc%5Etfw">Tweets by RIIZE_official</a> 
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-riize-border/60 glass-panel mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div>
+                    <p class="text-xl font-extrabold text-white">Fanclub Site for <span class="text-riize-orange">RIIZE</span></p>
+                    <p class="text-xs text-gray-400 mt-1">เว็บไซต์แฟนคลับอย่างไม่เป็นทางการ ทำขึ้นเพื่อสนับสนุนและรวบรวมข้อมูลศิลปินวง RIIZE (SM Entertainment)</p>
+                </div>
+                <div class="text-xs text-gray-500">
+                    Hosted with <i class="fas fa-heart text-riize-orange"></i> for <span class="text-white font-semibold">BRIIZE</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        /* =======================================================
+           1. HERO BANNER - YOUTUBE RANDOM MV PLAYER
+           ======================================================= */
+        const riizeMvPlaylist = [
+            { id: 'RsDXsGIst-s', title: 'Get A Guitar' },
+            { id: 'cS0R41-8qTo', title: 'Talk Saxy' },
+            { id: 'i14dF9G9L7k', title: 'Love 119' },
+            { id: '0X312B16_e4', title: 'Impossible' },
+            { id: '9P__O-BptS8', title: 'Boom Boom Bass' },
+            { id: '0T3O7I2lTMo', title: 'Memories' },
+            { id: '33e4O4tAt9U', title: 'Combo' }
+        ];
+
+        let currentVideoIndex = -1;
+
+        function setRandomHeroVideo() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * riizeMvPlaylist.length);
+            } while (randomIndex === currentVideoIndex && riizeMvPlaylist.length > 1);
+            
+            currentVideoIndex = randomIndex;
+            const selectedMV = riizeMvPlaylist[currentVideoIndex];
+
+            const iframe = document.getElementById('hero-bg-video');
+            const titleLabel = document.getElementById('current-mv-title');
+
+            iframe.src = `https://www.youtube.com/embed/${selectedMV.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${selectedMV.id}&enablejsapi=1`;
+            titleLabel.innerText = `NOW PLAYING RANDOM MV: RIIZE - ${selectedMV.title}`;
+        }
+
+        function changeHeroVideo() {
+            setRandomHeroVideo();
+        }
+
+        /* =======================================================
+           2. MEMBER PROFILES DATA & INTERACTIVE SHOWCASE
+           ======================================================= */
+        const membersData = [
+            {
+                id: 'shotaro',
+                name: 'SHOTARO (โชทาโร่)',
+                nativeName: 'ショウタロウ / Osaki Shotaro',
+                role: 'Main Dancer, Rapper',
+                dob: '25 พฤศจิกายน 2000',
+                nationality: 'ญี่ปุ่น (Japan)',
+                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+                timeline: [
+                    { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เคยเป็นแดนเซอร์มืออาชีพที่ EXPG Studio ประเทศญี่ปุ่น เคยร่วมงานเต้นแบ็คอัพให้ศิลปินชื่อดังมากมาย' },
+                    { era: '2020 (NCT)', detail: 'เข้าสู่ SM Entertainment และเปิดตัวอย่างเป็นทางการครั้งแรกในยูนิต NCT U ด้วยเพลง Make A Wish' },
+                    { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'เปิดตัวในฐานะสมาชิก RIIZE โชว์ทักษะการเต้นระดับสูงและเป็นพี่ใหญ่คอยดูแลน้องๆ ในวง' }
+                ]
+            },
+            {
+                id: 'eunseok',
+                name: 'EUNSEOK (อึนซอก)',
+                nativeName: '송은석 / Song Eunseok',
+                role: 'Vocalist, Visual',
+                dob: '19 มีนาคม 2001',
+                nationality: 'เกาหลีใต้ (South Korea)',
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+                timeline: [
+                    { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'ถูกแคสติ้งเข้า SM Entertainment ขณะกำลังเดินกลับบ้าน ได้รับการฝึกฝนทักษะการร้องและแสดงนานกว่า 5 ปี' },
+                    { era: '2022 (SMROOKIES)', detail: 'เปิดตัวเป็นสมาชิก SMROOKIES ร่วมกับซองชานและโชทาโร่ในรายการวาไรตี้ต่างๆ' },
+                    { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'เดบิวต์ในวง RIIZE โดดเด่นด้วยโทนเสียงนุ่มต่ำเสน่ห์วิชวล และบุคลิกตลกนิ่งๆ (Deadpan humor)' }
+                ]
+            },
+            {
+                id: 'sungchan',
+                name: 'SUNGCHAN (ซองชาน)',
+                nativeName: '정성찬 / Jung Sungchan',
+                role: 'Rapper, Vocalist',
+                dob: '13 กันยายน 2001',
+                nationality: 'เกาหลีใต้ (South Korea)',
+                image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
+                timeline: [
+                    { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เข้าเป็นเด็กฝึก SM Entertainment ตั้งแต่ปี 2016 ฝึกฝนทักษะการแร็ปและร่างกายอย่างหนัก' },
+                    { era: '2020 (NCT)', detail: 'เปิดตัวใน NCT ด้วยเพลง 90\'s Love ได้รับรางวัล Rookie of the Year และเคยเป็น MC รายการ Music Bank' },
+                    { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'ย้ายมาเปิดตัวใหม่กับ RIIZE ร่วมสร้างฐานแฟนคลับและทำหน้าที่แร็ปหลักด้วยฟิสิคัลความสูง 185+ ซม.' }
+                ]
+            },
+            {
+                id: 'wonbin',
+                name: 'WONBIN (วอนบิน)',
+                nativeName: '박원빈 / Park Wonbin',
+                role: 'Center, Dancer, Vocalist, Guitarist',
+                dob: '2 มีนาคม 2002',
+                nationality: 'เกาหลีใต้ (South Korea)',
+                image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80',
+                timeline: [
+                    { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'ถูกแคสติ้งผ่านทาง Instagram DM โดยทีมงาน SM Entertainment ทักษะโดดเด่นทั้งเต้นและเล่นกีตาร์' },
+                    { era: '2023 (Debut)', detail: 'เปิดตัวเป็น Center สมาชิก RIIZE สร้างกระแสไวรัลทันทีด้วยคาริสมาและทรงผมระดับตํานาน' },
+                    { era: 'ปัจจุบัน', detail: 'มีส่วนร่วมในการออกแบบท่าเต้นของวง และโชว์โซโล่กีตาร์ในเพลง Get A Guitar และเวทีการแสดงระดับโลก' }
+                ]
+            },
+            {
+                id: 'sohee',
+                name: 'SOHEE (โซฮี)',
+                nativeName: '이소희 / Lee Sohee',
+                role: 'Main Vocalist',
+                dob: '21 พฤศจิกายน 2003',
+                nationality: 'เกาหลีใต้ (South Korea)',
+                image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=600&q=80',
+                timeline: [
+                    { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เข้าเรียนในสถาบันดนตรีและฝึกฝนการใช้เสียงอย่างเข้มข้น ก่อนผ่านการออดิชั่นเข้า SM' },
+                    { era: '2023 (Debut)', detail: 'เปิดตัวในฐานะเมนโวคอลของ RIIZE สร้างความทึ่งด้วยเสียงไฮโน้ตที่สดใสและทรงพลัง' },
+                    { era: 'ปัจจุบัน', detail: 'รับหน้าที่เป็น MC ประจำรายการ M Countdown และร้องเพลงประกอบซีรีส์ OST' }
+                ]
+            },
+            {
+                id: 'anton',
+                name: 'ANTON (แอนตอน)',
+                nativeName: '이찬영 / Lee Chanyoung',
+                role: 'Sub Vocalist, Producer, Cello',
+                dob: '21 มีนาคม 2004',
+                nationality: 'อเมริกัน-เกาหลี (USA / S. Korea)',
+                image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+                timeline: [
+                    { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เติบโตที่นิวเจอร์ซีย์ สหรัฐอเมริกา เป็นนักกีฬาวายน้ำเยาวชน และเป็นลูกชายของโปรดิวเซอร์ดนตรีชื่อดัง Yoon Sang' },
+                    { era: '2023 (Debut)', detail: 'ย้ายมาเกาหลีเพื่อเดินตามฝันด้านดนตรี เดบิวต์เป็นมักเน่ (น้องเล็ก) ของ RIIZE' },
+                    { era: 'ปัจจุบัน', detail: 'แต่งและโปรดิวซ์เพลง มีทักษะการเล่นเชลโล่และเบส เป็นที่ชื่นชอบด้วยความน่ารักสดใส' }
+                ]
+            }
+        ];
+
+        let selectedMemberId = 'wonbin';
+
+        function renderMemberGrid() {
+            const grid = document.getElementById('member-cards-grid');
+            grid.innerHTML = membersData.map(m => `
+                <button onclick="selectMember('${m.id}')" class="p-3 rounded-xl border transition-all text-center flex flex-col items-center ${m.id === selectedMemberId ? 'bg-riize-orange/20 border-riize-orange scale-105 shadow-lg' : 'glass-panel border-riize-border hover:border-gray-500'}">
+                    <img src="${m.image}" alt="${m.name}" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-2 border-2 ${m.id === selectedMemberId ? 'border-riize-orange' : 'border-transparent'}">
+                    <span class="font-bold text-xs sm:text-sm text-white">${m.name.split(' ')[0]}</span>
+                </button>
+            `).join('');
+        }
+
+        function selectMember(id) {
+            selectedMemberId = id;
+            renderMemberGrid();
+            renderMemberDetail();
+        }
+
+        function renderMemberDetail() {
+            const member = membersData.find(m => m.id === selectedMemberId);
+            const detailBox = document.getElementById('member-detail-box');
+
+            detailBox.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    <div class="space-y-4 text-center lg:text-left">
+                        <img src="${member.image}" alt="${member.name}" class="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl object-cover mx-auto lg:mx-0 border-2 border-riize-orange shadow-2xl">
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">${member.name}</h3>
+                            <p class="text-riize-orange font-medium text-sm">${member.nativeName}</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase">ตำแหน่งในวง (Position)</p>
+                                <p class="font-semibold text-white">${member.role}</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase">วันเกิด (Date of Birth)</p>
+                                <p class="font-semibold text-white">${member.dob}</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase">สัญชาติ (Nationality)</p>
+                                <p class="font-semibold text-white">${member.nationality}</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase">สังกัด (Agency)</p>
+                                <p class="font-semibold text-white">SM Entertainment</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-3 flex items-center">
+                                <i class="fas fa-history text-riize-orange mr-2"></i> เส้นทางสายดนตรี (Timeline)
+                            </h4>
+                            <div class="space-y-3 relative border-l-2 border-riize-orange/30 ml-3 pl-4">
+                                ${member.timeline.map(item => `
+                                    <div class="relative">
+                                        <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-riize-orange"></div>
+                                        <span class="text-xs font-bold text-riize-orange uppercase tracking-wider">${item.era}</span>
+                                        <p class="text-sm text-gray-300 mt-0.5">${item.detail}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* =======================================================
+           3. DISCOGRAPHY DATA & RENDER
+           ======================================================= */
+        const albumsData = [
+            {
+                title: 'Get A Guitar',
+                type: '1st Single Album (Debut)',
+                date: '4 กันยายน 2023',
+                tracks: ['Get A Guitar', 'Memories'],
+                mvId: 'RsDXsGIst-s',
+                cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+                title: 'Talk Saxy',
+                type: '2nd Single',
+                date: '27 ตุลาคม 2023',
+                tracks: ['Talk Saxy'],
+                mvId: 'cS0R41-8qTo',
+                cover: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+                title: 'Love 119',
+                type: '3rd Single',
+                date: '5 มกราคม 2024',
+                tracks: ['Love 119'],
+                mvId: 'i14dF9G9L7k',
+                cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+                title: 'Impossible',
+                type: 'Prologue Single',
+                date: '18 เมษายน 2024',
+                tracks: ['Impossible'],
+                mvId: '0X312B16_e4',
+                cover: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+                title: 'RIIZING - Boom Boom Bass',
+                type: '1st Mini Album',
+                date: '17 มิถุนายน 2024',
+                tracks: ['Boom Boom Bass', 'Siren', 'Impossible', '9 Days', 'Honestly', 'One Kiss'],
+                mvId: '9P__O-BptS8',
+                cover: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=500&q=80'
+            }
+        ];
+
+        function renderDiscography() {
+            const container = document.getElementById('discography-grid');
+            container.innerHTML = albumsData.map(album => `
+                <div class="glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden group">
+                        <img src="${album.cover}" alt="${album.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-riize-card via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-riize-orange text-white text-xs font-bold rounded-full">${album.type}</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <p class="text-xs text-riize-orange font-semibold">${album.date}</p>
+                            <h4 class="text-2xl font-bold text-white mb-2">${album.title}</h4>
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-gray-400 uppercase">Tracklist:</p>
+                                <ul class="text-sm text-gray-300 list-disc list-inside">
+                                    ${album.tracks.map(t => `<li>${t}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <a href="https://www.youtube.com/watch?v=${album.mvId}" target="_blank" class="w-full py-2.5 rounded-xl bg-riize-dark hover:bg-riize-orange text-white font-semibold text-sm transition-all border border-riize-border flex items-center justify-center space-x-2">
+                                <i class="fab fa-youtube text-red-500"></i>
+                                <span>รับชม Music Video</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* =======================================================
+           4. VARIETY SHOWS DATA & RENDER
+           ======================================================= */
+        const varietyData = [
+            {
+                title: 'WE RIIZE',
+                category: 'Official Web Variety',
+                platform: 'YouTube',
+                desc: 'รายการเรียลลิตี้ออฟฟิเชียลหลัก พาแฟนๆ ไปดูเบื้องหลัง การฝึกฝน การท่องเที่ยว และกิจกรรมวันหยุดของสมาชิก',
+                link: 'https://www.youtube.com/@RIIZE_official'
+            },
+            {
+                title: 'Rise & Real',
+                category: 'Log / Vlog Series',
+                platform: 'YouTube',
+                desc: 'คลิปวิดีโอสั้นตามติดชีวิตจริง การเตรียมตัวขึ้นเวทีคอนเสิร์ต งานประกาศรางวัล และทัวร์ต่างประเทศ',
+                link: 'https://www.youtube.com/@RIIZE_official'
+            },
+            {
+                title: 'Idol Human Theater',
+                category: 'Web Variety Show',
+                platform: 'KBS Kpop',
+                desc: 'รายการวาไรตี้สารคดีจำลองสุดฮา โชว์เคมีและมุกตลกธรรมชาติของสมาชิก RIIZE',
+                link: 'https://www.youtube.com/results?search_query=RIIZE+Idol+Human+Theater'
+            },
+            {
+                title: 'Running Man (런닝맨)',
+                category: 'TV Variety Show',
+                platform: 'SBS',
+                desc: 'สมาชิกวงเข้าร่วมรายการวาไรตี้ระดับชาติของเกาหลี วิ่งแข่งเล่นเกมเคมีสุดน่ารักร่วมกับรุ่นพี่ MC',
+                link: 'https://www.youtube.com/results?search_query=RIIZE+Running+Man'
+            },
+            {
+                title: 'Knowing Bros (아는 형님)',
+                category: 'TV Variety Show',
+                platform: 'JTBC',
+                desc: 'ปรากฏตัวในชุดนักเรียน โชว์ทักษะการเต้น ร้องเพลงสด และตอบคำถามประวัติส่วนตัว',
+                link: 'https://www.youtube.com/results?search_query=RIIZE+Knowing+Bros'
+            },
+            {
+                title: 'Silence Of Dance',
+                category: 'Web Content',
+                platform: 'MUPLY',
+                desc: 'มิชชั่นเต้นเพลงเดบิวต์โดยห้ามส่งเสียงหรือทำอุปกรณ์ตก โชว์ความซื่อและความฮาของวง',
+                link: 'https://www.youtube.com/results?search_query=RIIZE+Silence+Of+Dance'
+            }
+        ];
+
+        function renderVarietyShows() {
+            const container = document.getElementById('variety-grid');
+            container.innerHTML = varietyData.map(show => `
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between hover:border-riize-orange transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs px-2.5 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">${show.category}</span>
+                            <span class="text-xs text-gray-400"><i class="fas fa-tv mr-1"></i>${show.platform}</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">${show.title}</h4>
+                        <p class="text-sm text-gray-300 leading-relaxed">${show.desc}</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-riize-border/50">
+                        <a href="${show.link}" target="_blank" class="text-xs font-bold text-riize-orange hover:text-white transition-colors flex items-center space-x-1">
+                            <span>ค้นหาดูรายการย้อนหลัง</span>
+                            <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* =======================================================
+           5. SIMULATED REALTIME LIVE SOCIAL FEEDS
+           ======================================================= */
+        const mockSocialFeeds = [
+            {
+                platform: 'Instagram',
+                icon: 'fab fa-instagram text-pink-500',
+                user: '@riize_official',
+                time: '10 นาทีที่แล้ว',
+                content: 'BRIIZE! ขอบคุณสำหรับกำลังใจบนเวทีโชว์เคสวันนี้มากๆ นะครับ 🧡🎸 #RIIZE #라이즈 #BRIIZE',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80'
+            },
+            {
+                platform: 'X (Twitter)',
+                icon: 'fab fa-x-twitter text-white',
+                user: '@RIIZE_official',
+                time: '45 นาทีที่แล้ว',
+                content: '[NOTICE] RIIZE Fan-Con Tour Final Announcement is OUT NOW! Check Weverse for ticketing info.',
+                image: null
+            },
+            {
+                platform: 'YouTube',
+                icon: 'fab fa-youtube text-red-500',
+                user: '@RIIZE_official',
+                time: '2 ชั่วโมงที่แล้ว',
+                content: 'NEW VIDEO: [WE RIIZE] EP.24 Behind the Scenes of Boom Boom Bass Music Video Shooting!',
+                image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=500&q=80'
+            }
+        ];
+
+        function renderLiveFeeds() {
+            const container = document.getElementById('live-feed-stream');
+            container.innerHTML = mockSocialFeeds.map(feed => `
+                <div class="bg-riize-dark/80 p-4 rounded-xl border border-riize-border space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="${feed.icon} text-lg"></i>
+                            <span class="text-xs font-bold text-white">${feed.user}</span>
+                        </div>
+                        <span class="text-[11px] text-gray-400">${feed.time}</span>
+                    </div>
+                    <p class="text-sm text-gray-200">${feed.content}</p>
+                    ${feed.image ? `<img src="${feed.image}" class="w-full h-40 object-cover rounded-lg border border-riize-border">` : ''}
+                </div>
+            `).join('');
+        }
+
+        function simulateLiveFeedRefresh() {
+            const icon = document.getElementById('refresh-icon');
+            icon.classList.add('animate-spin');
+
+            setTimeout(() => {
+                const newPost = {
+                    platform: 'Instagram',
+                    icon: 'fab fa-instagram text-pink-500',
+                    user: '@riize_official',
+                    time: 'เมื่อสักครู่นี้',
+                    content: '✨ New Update: "Boom Boom Bass" Dance Practice Video (Mirrored Ver.) is Live Now!',
+                    image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=500&q=80'
+                };
+                mockSocialFeeds.unshift(newPost);
+                if(mockSocialFeeds.length > 5) mockSocialFeeds.pop();
+                
+                renderLiveFeeds();
+                icon.classList.remove('animate-spin');
+            }, 800);
+        }
+
+        /* =======================================================
+           6. MOBILE MENU & INITIALIZATION
+           ======================================================= */
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize application components on load
+        window.addEventListener('load', () => {
+            setRandomHeroVideo();
+            renderMemberGrid();
+            renderMemberDetail();
+            renderDiscography();
+            renderVarietyShows();
+            renderLiveFeeds();
+        });
+    </script>
+</body>
+</html>
