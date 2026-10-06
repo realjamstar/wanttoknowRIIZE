@@ -1600,35 +1600,67 @@ function renderDiscography() {
             updatePageLanguage();
         });
 
-// ฟังก์ชันสำหรับเปิด Modal รูปใหญ่
+// ฟังก์ชันเปิดรูปขยาย (พร้อมระบบสำรองหากไม่เจอ Element)
 function openImageModal(imgUrl) {
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-img-element');
-    
-    if (modal && modalImg) {
-        modalImg.src = imgUrl;
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // ป้องกันหน้าเว็บเลื่อนขณะเปิดรูป
-    } else {
-        console.error('ไม่พบ Element #image-modal หรือ #modal-img-element ใน HTML');
+    if (!imgUrl) return;
+
+    let modal = document.getElementById('image-modal');
+    let modalImg = document.getElementById('modal-img-element');
+
+    // ถ้าหาใน HTML ไม่เจอจริงๆ ให้สร้างขึ้นมาใหม่แบบ Dynamic ทันที
+    if (!modal || !modalImg) {
+        console.warn('ไม่พบ #image-modal ใน HTML - กำลังสร้าง Modal สำรองให้...');
+        
+        const modalHTML = `
+            <div id="image-modal" class="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
+                <div class="relative max-w-4xl max-h-[90vh] p-2" onclick="event.stopPropagation()">
+                    <button type="button" onclick="closeImageModal()" class="absolute -top-4 -right-4 bg-riize-orange text-black font-extrabold w-10 h-10 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-50">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                    <img id="modal-img-element" src="${imgUrl}" alt="Expanded Image" class="max-w-full max-h-[85vh] rounded-2xl border-2 border-riize-orange/70 shadow-2xl object-contain mx-auto">
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        document.body.style.overflow = 'hidden';
+        return;
     }
+
+    // กรณีเจอ Element ปรกติ
+    modalImg.src = imgUrl;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
 }
 
-// ฟังก์ชันสำหรับปิด Modal
+// ฟังก์ชันปิดรูปขยาย
 function closeImageModal() {
     const modal = document.getElementById('image-modal');
     if (modal) {
         modal.classList.add('hidden');
-        document.body.style.overflow = ''; // คืนค่าการเลื่อนหน้าเว็บ
+        document.body.style.overflow = '';
     }
 }
 
-// กดปุ่ม ESC บนคีย์บอร์ดเพื่อปิดรูป
+// กดปุ่ม ESC เพื่อปิด
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeImageModal();
     }
 });
     </script>
+<script>
+<!-- Modal สำหรับแสดงรูปขยายลอยบนหน้าเว็บ -->
+<div id="image-modal" class="fixed inset-0 z-[99999] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
+    <div class="relative max-w-4xl max-h-[90vh] p-2" onclick="event.stopPropagation()">
+        <!-- ปุ่มปิด [X] -->
+        <button type="button" onclick="closeImageModal()" class="absolute -top-4 -right-4 bg-riize-orange text-black font-extrabold w-10 h-10 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-50 cursor-pointer">
+            <i class="fas fa-times text-lg"></i>
+        </button>
+        <!-- รูปขยาย -->
+        <img id="modal-img-element" src="" alt="Expanded Image" class="max-w-full max-h-[85vh] rounded-2xl border-2 border-riize-orange/70 shadow-2xl object-contain mx-auto pointer-events-auto">
+    </div>
+</div>
+</script>
+<script src="app.js"></script>
 </body>
 </html>
