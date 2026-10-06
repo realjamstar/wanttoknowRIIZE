@@ -389,103 +389,103 @@
 </section>
 
         <!-- OFFICIAL FEEDS SECTION -->
-        <section id="social" class="scroll-mt-24">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
-                <div>
-                    <h2 data-i18n="social-tag" class="text-xs font-bold uppercase tracking-widest text-riize-orange">OFFICIAL FEEDS</h2>
-                    <h3 data-i18n="social-title" class="text-3xl sm:text-5xl font-extrabold">ช่องทางการติดตาม & Live Feed</h3>
-                    <p data-i18n="social-subtitle" class="text-gray-400 text-sm sm:text-base mt-1">อัปเดตความเคลื่อนไหวจาก Official Accounts ของวง RIIZE แบบ Realtime</p>
+<section id="social" class="scroll-mt-24">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+            <h2 data-i18n="social-tag" class="text-xs font-bold uppercase tracking-widest text-riize-orange">OFFICIAL FEEDS</h2>
+            <h3 data-i18n="social-title" class="text-3xl sm:text-5xl font-extrabold">ช่องทางการติดตาม & Live Feed</h3>
+            <p data-i18n="social-subtitle" class="text-gray-400 text-sm sm:text-base mt-1">อัปเดตความเคลื่อนไหวจาก Official Accounts ของวง RIIZE แบบ Realtime</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex items-center space-x-3">
+            <button onclick="refreshLiveFeed()" class="px-4 py-2 rounded-lg bg-riize-orange hover:bg-riize-coral text-white text-sm font-semibold transition-all flex items-center space-x-2">
+                <i id="refresh-icon" class="fas fa-sync-alt"></i>
+                <span data-i18n="social-refresh-btn">ดึงอัปเดตคอนเทนท์ใหม่</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Official Social Channel Badges -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+        <a href="https://www.instagram.com/riize_official/" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-pink-500 transition-all group">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 flex items-center justify-center text-white text-xl">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div>
+                <p class="font-bold text-sm group-hover:text-pink-400">Instagram</p>
+                <p class="text-xs text-gray-400">@riize_official</p>
+            </div>
+        </a>
+
+        <a href="https://twitter.com/RIIZE_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-blue-400 transition-all group">
+            <div class="w-10 h-10 rounded-full bg-black border border-gray-700 flex items-center justify-center text-white text-lg">
+                <i class="fab fa-x-twitter"></i>
+            </div>
+            <div>
+                <p class="font-bold text-sm group-hover:text-blue-400">X (Twitter)</p>
+                <p class="text-xs text-gray-400">@RIIZE_official</p>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/@RIIZE_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-red-500 transition-all group">
+            <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white text-lg">
+                <i class="fab fa-youtube"></i>
+            </div>
+            <div>
+                <p class="font-bold text-sm group-hover:text-red-400">YouTube</p>
+                <p class="text-xs text-gray-400">@RIIZE_official</p>
+            </div>
+        </a>
+
+        <a href="https://www.tiktok.com/@riize_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-teal-400 transition-all group">
+            <div class="w-10 h-10 rounded-full bg-black border border-teal-500 flex items-center justify-center text-white text-lg">
+                <i class="fab fa-tiktok"></i>
+            </div>
+            <div>
+                <p class="font-bold text-sm group-hover:text-teal-400">TikTok</p>
+                <p class="text-xs text-gray-400">@riize_official</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- Live Feed Grid Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Live Social Activity Feed Stream -->
+        <div class="glass-panel p-6 rounded-2xl flex flex-col h-[520px]">
+            <div class="flex items-center justify-between border-b border-riize-border/60 pb-4 mb-4">
+                <div class="flex items-center space-x-2">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <h4 data-i18n="feed-box-title" class="font-bold text-white text-lg">RIIZE Realtime Feed</h4>
                 </div>
-                <div class="mt-4 md:mt-0 flex items-center space-x-3">
-                    <button onclick="simulateLiveFeedRefresh()" class="px-4 py-2 rounded-lg bg-riize-orange hover:bg-riize-coral text-white text-sm font-semibold transition-all flex items-center space-x-2">
-                        <i id="refresh-icon" class="fas fa-sync-alt"></i>
-                        <span data-i18n="social-refresh-btn">ดึงอัปเดตคอนเทนท์ใหม่ (Demo)</span>
-                    </button>
-                </div>
+                <span data-i18n="feed-sync-status" class="text-xs text-gray-400 font-mono">Auto-sync Active</span>
             </div>
 
-            <!-- Official Social Channel Badges -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-                <a href="https://www.instagram.com/riize_official/" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-pink-500 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 flex items-center justify-center text-white text-xl">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-sm group-hover:text-pink-400">Instagram</p>
-                        <p class="text-xs text-gray-400">@riize_official</p>
-                    </div>
-                </a>
+            <!-- Scrollable Feeds Stream Container -->
+            <div id="live-feed-stream" class="flex-1 overflow-y-auto space-y-4 pr-2">
+                <!-- JavaScript จะสร้างแท็กการ์ดมาใส่ตรงนี้ -->
+            </div>
+        </div>
 
-                <a href="https://twitter.com/RIIZE_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-blue-400 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-black border border-gray-700 flex items-center justify-center text-white text-lg">
-                        <i class="fab fa-x-twitter"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-sm group-hover:text-blue-400">X (Twitter)</p>
-                        <p class="text-xs text-gray-400">@RIIZE_official</p>
-                    </div>
-                </a>
-
-                <a href="https://www.youtube.com/@RIIZE_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-red-500 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white text-lg">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-sm group-hover:text-red-400">YouTube</p>
-                        <p class="text-xs text-gray-400">@RIIZE_official</p>
-                    </div>
-                </a>
-
-                <a href="https://www.tiktok.com/@riize_official" target="_blank" class="glass-panel p-4 rounded-xl flex items-center space-x-3 hover:border-teal-400 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-black border border-teal-500 flex items-center justify-center text-white text-lg">
-                        <i class="fab fa-tiktok"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-sm group-hover:text-teal-400">TikTok</p>
-                        <p class="text-xs text-gray-400">@riize_official</p>
-                    </div>
-                </a>
+        <!-- Twitter Official Embed Timeline Widget Container -->
+        <div class="glass-panel p-6 rounded-2xl flex flex-col h-[520px]">
+            <div class="flex items-center justify-between border-b border-riize-border/60 pb-4 mb-4">
+                <h4 class="font-bold text-white text-lg flex items-center space-x-2">
+                    <i class="fab fa-x-twitter text-riize-orange"></i>
+                    <span>Official X Timeline Feed</span>
+                </h4>
+                <span class="text-xs text-gray-400">@RIIZE_official</span>
             </div>
 
-            <!-- Live Feed Grid Container -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Live Simulated Social Activity Feed -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col h-[520px]">
-                    <div class="flex items-center justify-between border-b border-riize-border/60 pb-4 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <span class="relative flex h-3 w-3">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                            </span>
-                            <h4 data-i18n="feed-box-title" class="font-bold text-white text-lg">RIIZE Realtime Feed</h4>
-                        </div>
-                        <span data-i18n="feed-sync-status" class="text-xs text-gray-400 font-mono">Auto-sync Active</span>
-                    </div>
-
-                    <!-- Scrollable Feeds Stream -->
-                    <div id="live-feed-stream" class="flex-1 overflow-y-auto space-y-4 pr-2">
-                        <!-- Feeds injected dynamically -->
-                    </div>
-                </div>
-
-                <!-- Twitter Official Embed Timeline Widget Container -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col h-[520px]">
-                    <div class="flex items-center justify-between border-b border-riize-border/60 pb-4 mb-4">
-                        <h4 class="font-bold text-white text-lg flex items-center space-x-2">
-                            <i class="fab fa-x-twitter text-riize-orange"></i>
-                            <span>Official X Timeline Feed</span>
-                        </h4>
-                        <span class="text-xs text-gray-400">@RIIZE_official</span>
-                    </div>
-
-                    <div class="flex-1 overflow-y-auto rounded-xl bg-black/40 p-2">
-                        <!-- Twitter Embed Widget -->
-                        <a class="twitter-timeline" data-theme="dark" data-height="420" href="https://twitter.com/RIIZE_official?ref_src=twsrc%5Etfw">Tweets by RIIZE_official</a> 
-                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
-                </div>
+            <div class="flex-1 overflow-y-auto rounded-xl bg-black/40 p-2">
+                <!-- Twitter Embed Widget -->
+                <a class="twitter-timeline" data-theme="dark" data-height="420" href="https://twitter.com/RIIZE_official?ref_src=twsrc%5Etfw">Tweets by RIIZE_official</a> 
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
     </main>
 
@@ -540,7 +540,7 @@
                 "stat-awards": "รางวัลงานปลายปี",
                 "stat-wins": "ถ้วยรางวัลรายการเพลง",
                 "stat-charts": "รางวัลอื่นๆ",
-                "award-cat-main": "งานประกาศรางวัลใหญ่ (Award Shows)",
+                "award-cat-main": "งานประกาศรางวัลใหญ่ (Awards)",
                 "award-cat-music": "ถ้วยรางวัลรายการเพลง (Music Show Wins)",
                 "win-date-jan": "มกราคม 2024",
                 "win-date-jun": "มิถุนายน 2024",
@@ -1376,6 +1376,100 @@ function renderDiscography() {
         window.addEventListener('load', () => {
             updatePageLanguage();
         });
+// ข้อมูล Social Feeds ล่าสุด (3 โพสต์ล่าสุดจากช่องทางต่าง ๆ)
+const riizeFeedsData = [
+    {
+        id: 1,
+        platform: 'instagram',
+        badgeName: 'Instagram',
+        badgeIcon: 'fab fa-instagram text-pink-500',
+        borderColor: 'hover:border-pink-500/60',
+        timeAgo: '15 นาทีที่แล้ว',
+        caption: 'RIIZE 라이즈 \'Boom Boom Bass\' Behind The Scenes Photos 📸✨ #RIIZE #라이즈 #RISEandREALIZE',
+        mediaUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
+        postLink: 'https://www.instagram.com/riize_official/'
+    },
+    {
+        id: 2,
+        platform: 'youtube',
+        badgeName: 'YouTube Video',
+        badgeIcon: 'fab fa-youtube text-red-500',
+        borderColor: 'hover:border-red-500/60',
+        timeAgo: '3 ชั่วโมงที่แล้ว',
+        caption: 'RIIZE 라이즈 \'Boom Boom Bass\' MV Performance Video',
+        mediaUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=80',
+        postLink: 'https://www.youtube.com/@RIIZE_official'
+    },
+    {
+        id: 3,
+        platform: 'tiktok',
+        badgeName: 'TikTok',
+        badgeIcon: 'fab fa-tiktok text-teal-400',
+        borderColor: 'hover:border-teal-400/60',
+        timeAgo: '6 ชั่วโมงที่แล้ว',
+        caption: 'Boom Boom Bass Challenge with Shotaro & Wonbin! 🎸🥁 #RIIZE_BoomBoomBass #RIIZE',
+        mediaUrl: null, // ตัวอย่างแบบข้อความไม่มีรูป
+        postLink: 'https://www.tiktok.com/@riize_official'
+    }
+];
+
+// ฟังก์ชันสร้าง UI สำหรับ Render Feed
+function renderLiveFeeds() {
+    const feedContainer = document.getElementById('live-feed-stream');
+    if (!feedContainer) return;
+
+    // เคลียร์ข้อมูลเดิม
+    feedContainer.innerHTML = '';
+
+    // วนลูปสร้าง HTML Card
+    riizeFeedsData.forEach(feed => {
+        const feedCard = document.createElement('div');
+        feedCard.className = `p-4 rounded-xl bg-black/40 border border-white/10 ${feed.borderColor} transition-all space-y-3`;
+
+        feedCard.innerHTML = `
+            <div class="flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                    <i class="${feed.badgeIcon} text-base"></i>
+                    <span class="font-bold text-white">${feed.badgeName}</span>
+                </div>
+                <span class="text-gray-400">${feed.timeAgo}</span>
+            </div>
+            
+            <p class="text-sm text-gray-200 line-clamp-2 leading-relaxed">${feed.caption}</p>
+            
+            ${feed.mediaUrl ? `
+                <div class="overflow-hidden rounded-lg border border-white/5 h-36">
+                    <img src="${feed.mediaUrl}" alt="Feed Media" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+            ` : ''}
+
+            <div class="pt-1 flex justify-end">
+                <a href="${feed.postLink}" target="_blank" class="text-xs text-riize-orange hover:text-white transition-colors inline-flex items-center space-x-1 font-semibold">
+                    <span>เปิดดูโพสต์เต็ม</span>
+                    <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+        `;
+
+        feedContainer.appendChild(feedCard);
+    });
+}
+
+// ฟังก์ชันปุ่มกด Refresh พร้อมหมุนไอคอน Demo
+function refreshLiveFeed() {
+    const refreshIcon = document.getElementById('refresh-icon');
+    if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+    setTimeout(() => {
+        renderLiveFeeds();
+        if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+    }, 600);
+}
+
+// โหลด Feed ทันทีเมื่อเปิดหน้าเว็บ
+document.addEventListener('DOMContentLoaded', () => {
+    renderLiveFeeds();
+});
     </script>
 </body>
 </html>
