@@ -200,123 +200,193 @@
             </div>
         </section>
 
-        <!-- AWARDS & ACHIEVEMENTS SECTION -->
-        <section id="awards" class="scroll-mt-24">
-            <div class="text-center space-y-2 mb-12">
-                <h2 data-i18n="awards-tag" class="text-xs font-bold uppercase tracking-widest text-riize-orange">AWARDS & ACHIEVEMENTS</h2>
-                <h3 data-i18n="awards-title" class="text-3xl sm:text-5xl font-extrabold">รางวัลที่ได้รับ</h3>
+        <!-- AWARDS & ACHIEVEMENTS SECTION (INTERACTIVE & TIMELINE STYLE) -->
+<section id="awards" class="scroll-mt-24 py-12 relative overflow-hidden">
+    <!-- Background Glow Effect Elements -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-riize-orange/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <!-- Section Header -->
+    <div class="text-center space-y-3 mb-16 relative z-10">
+        <span data-i18n="awards-tag" class="inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-riize-orange/10 text-riize-orange border border-riize-orange/30 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+            AWARDS & ACHIEVEMENTS
+        </span>
+        <h3 data-i18n="awards-title" class="text-4xl sm:text-6xl font-black tracking-tight text-white">
+            HONOR <span class="bg-gradient-to-r from-riize-orange to-amber-400 bg-clip-text text-transparent">&</span> GLORY
+        </h3>
+        <p class="text-gray-400 text-sm max-w-md mx-auto">บันทึกความสำเร็จและรางวัลแห่งความภาคภูมิใจของ RIIZE</p>
+    </div>
+
+    <!-- Stat Counters (Glow Capsules Style) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20 relative z-10">
+        <div class="relative group p-6 rounded-2xl bg-gradient-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-md hover:border-riize-orange/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+            <div class="absolute -top-3 left-6 bg-riize-orange text-black p-1.5 rounded-lg text-xs font-black shadow-md"><i class="fas fa-compact-disc"></i></div>
+            <p class="text-4xl sm:text-5xl font-black text-white mt-2 mb-1 group-hover:text-riize-orange transition-colors">1M+</p>
+            <p data-i18n="stat-sales" class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">ยอดขายอัลบั้มล้านชุด</p>
+        </div>
+        
+        <div class="relative group p-6 rounded-2xl bg-gradient-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-md hover:border-riize-orange/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+            <div class="absolute -top-3 left-6 bg-riize-orange text-black p-1.5 rounded-lg text-xs font-black shadow-md"><i class="fas fa-trophy"></i></div>
+            <p class="text-4xl sm:text-5xl font-black text-riize-orange mt-2 mb-1">10+</p>
+            <p data-i18n="stat-awards" class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">รางวัลรุกกี้และรางวัลใหญ่</p>
+        </div>
+
+        <div class="relative group p-6 rounded-2xl bg-gradient-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-md hover:border-riize-orange/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+            <div class="absolute -top-3 left-6 bg-riize-orange text-black p-1.5 rounded-lg text-xs font-black shadow-md"><i class="fas fa-award"></i></div>
+            <p class="text-4xl sm:text-5xl font-black text-white mt-2 mb-1 group-hover:text-riize-orange transition-colors">5+</p>
+            <p data-i18n="stat-wins" class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">ถ้วยรางวัลรายการเพลง</p>
+        </div>
+
+        <div class="relative group p-6 rounded-2xl bg-gradient-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-md hover:border-riize-orange/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+            <div class="absolute -top-3 left-6 bg-riize-orange text-black p-1.5 rounded-lg text-xs font-black shadow-md"><i class="fas fa-chart-line"></i></div>
+            <p class="text-4xl sm:text-5xl font-black text-riize-orange mt-2 mb-1">#1</p>
+            <p data-i18n="stat-charts" class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">อันดับ 1 ชาร์ตเพลงชั้นนำ</p>
+        </div>
+    </div>
+
+    <!-- Main Grid Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+        
+        <!-- LEFT: Vertical Timeline (Major Music Awards) - занимает 7 คอลัมน์ -->
+        <div class="lg:col-span-7 space-y-6">
+            <div class="flex items-center space-x-3 text-riize-orange mb-6">
+                <div class="w-10 h-10 rounded-xl bg-riize-orange/20 flex items-center justify-center border border-riize-orange/40">
+                    <i class="fas fa-crown text-xl"></i>
+                </div>
+                <h4 data-i18n="award-cat-main" class="text-2xl font-bold text-white tracking-wide">งานประกาศรางวัลใหญ่</h4>
             </div>
 
-            <!-- Stat Counters -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-                <div class="glass-panel p-6 rounded-2xl text-center border-t-2 border-t-riize-orange">
-                    <p class="text-4xl sm:text-5xl font-black text-white mb-1">1,000,000+</p>
-                    <p data-i18n="stat-sales" class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">ยอดขายอัลบั้มล้านชุด</p>
-                </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-t-2 border-t-riize-orange">
-                    <p class="text-4xl sm:text-5xl font-black text-riize-orange mb-1">10+</p>
-                    <p data-i18n="stat-awards" class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">รางวัลรุกกี้และรางวัลใหญ่</p>
-                </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-t-2 border-t-riize-orange">
-                    <p class="text-4xl sm:text-5xl font-black text-white mb-1">5+</p>
-                    <p data-i18n="stat-wins" class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">ถ้วยรางวัลรายการเพลง</p>
-                </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-t-2 border-t-riize-orange">
-                    <p class="text-4xl sm:text-5xl font-black text-riize-orange mb-1">#1</p>
-                    <p data-i18n="stat-charts" class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">อันดับ 1 ชาร์ตเพลงชั้นนำ</p>
-                </div>
-            </div>
-
-            <!-- Detailed Award Categories Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Major Music Awards -->
-                <div class="glass-panel p-6 rounded-2xl space-y-4">
-                    <div class="flex items-center space-x-3 text-riize-orange border-b border-riize-border/60 pb-3">
-                        <i class="fas fa-trophy text-2xl"></i>
-                        <h4 data-i18n="award-cat-main" class="text-xl font-bold text-white">งานประกาศรางวัลใหญ่ (Award Shows)</h4>
-                    </div>
-                    <ul class="space-y-3 text-sm sm:text-base text-gray-300">
-                        <li class="flex justify-between items-start border-b border-riize-border/30 pb-2">
-                            <div>
-                                <p class="font-semibold text-white">MAMA Awards 2023</p>
-                                <p class="text-xs text-gray-400">Favorite New Artist</p>
-                            </div>
-                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2023</span>
-                        </li>
-                        <li class="flex justify-between items-start border-b border-riize-border/30 pb-2">
-                            <div>
-                                <p class="font-semibold text-white">Melon Music Awards (MMA 2023)</p>
-                                <p class="text-xs text-gray-400">New Artist of the Year (Rookie)</p>
-                            </div>
-                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2023</span>
-                        </li>
-                        <li class="flex justify-between items-start border-b border-riize-border/30 pb-2">
-                            <div>
-                                <p class="font-semibold text-white">Seoul Music Awards 2024</p>
-                                <p class="text-xs text-gray-400">Rookie of the Year & Bonsang</p>
-                            </div>
-                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2024</span>
-                        </li>
-                        <li class="flex justify-between items-start border-b border-riize-border/30 pb-2">
-                            <div>
-                                <p class="font-semibold text-white">Golden Disc Awards 2024</p>
-                                <p class="text-xs text-gray-400">Rookie Artist of the Year</p>
-                            </div>
-                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2024</span>
-                        </li>
-                        <li class="flex justify-between items-start">
-                            <div>
-                                <p class="font-semibold text-white">CCMA (Circle Chart Music Awards)</p>
-                                <p class="text-xs text-gray-400">Rookie of the Year (Unique Streaming)</p>
-                            </div>
-                            <span class="text-xs px-2 py-1 rounded bg-riize-orange/20 text-riize-orange font-bold">2024</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Music Show Wins -->
-                <div class="glass-panel p-6 rounded-2xl space-y-4">
-                    <div class="flex items-center space-x-3 text-riize-orange border-b border-riize-border/60 pb-3">
-                        <i class="fas fa-award text-2xl"></i>
-                        <h4 data-i18n="award-cat-music" class="text-xl font-bold text-white">ถ้วยรางวัลรายการเพลง (Music Show Wins)</h4>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="font-bold text-riize-orange">Love 119</span>
-                                <span data-i18n="win-date-jan" class="text-xs text-gray-400">มกราคม 2024</span>
-                            </div>
-                            <p data-i18n="win-love119-mcount" class="text-sm text-gray-300">อันดับ 1 ในรายการ Mnet <span class="text-white font-medium">M COUNTDOWN</span> (ถ้วยแรกหลังเดบิวต์)</p>
-                            <p data-i18n="win-love119-inki" class="text-sm text-gray-300">อันดับ 1 ในรายการ SBS <span class="text-white font-medium">Inkigayo</span></p>
+            <!-- Timeline Line Container -->
+            <div class="relative pl-6 sm:pl-8 border-l-2 border-riize-orange/30 space-y-8 ml-2">
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-riize-orange border-4 border-black group-hover:scale-125 transition-transform shadow-[0_0_10px_#f97316]"></div>
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-riize-orange/40 backdrop-blur-md transition-all duration-300 space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-riize-orange/20 text-riize-orange border border-riize-orange/30">2023</span>
+                            <i class="fas fa-trophy text-amber-400/80"></i>
                         </div>
-
-                        <div class="bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="font-bold text-riize-orange">Boom Boom Bass</span>
-                                <span data-i18n="win-date-jun" class="text-xs text-gray-400">มิถุนายน 2024</span>
-                            </div>
-                            <p data-i18n="win-bbb-theshow" class="text-sm text-gray-300">อันดับ 1 ในรายการ SBS M <span class="text-white font-medium">THE SHOW</span></p>
-                            <p data-i18n="win-bbb-showchamp" class="text-sm text-gray-300">อันดับ 1 ในรายการ MBC M <span class="text-white font-medium">SHOW CHAMPION</span></p>
-                            <p data-i18n="win-bbb-musicbank" class="text-sm text-gray-300">อันดับ 1 ในรายการ KBS <span class="text-white font-medium">Music Bank</span></p>
-                        </div>
+                        <h5 class="font-bold text-lg text-white group-hover:text-riize-orange transition-colors">MAMA Awards 2023</h5>
+                        <p class="text-sm text-gray-300">Favorite New Artist</p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- VARIETY SHOWS SECTION -->
-        <section id="shows" class="scroll-mt-24">
-            <div class="text-center space-y-2 mb-12">
-                <h2 data-i18n="shows-tag" class="text-xs font-bold uppercase tracking-widest text-riize-orange">VARIETY SHOWS</h2>
-                <h3 data-i18n="shows-title" class="text-3xl sm:text-5xl font-extrabold">รายการที่ออกอากาศ</h3>
-                <p data-i18n="shows-subtitle" class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">รวบรวมทั้งรายการออฟฟิเชียลของวงและรายการวาไรตี้ชื่อดัง</p>
+                <!-- Timeline Item 2 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-riize-orange border-4 border-black group-hover:scale-125 transition-transform shadow-[0_0_10px_#f97316]"></div>
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-riize-orange/40 backdrop-blur-md transition-all duration-300 space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-riize-orange/20 text-riize-orange border border-riize-orange/30">2023</span>
+                            <i class="fas fa-trophy text-amber-400/80"></i>
+                        </div>
+                        <h5 class="font-bold text-lg text-white group-hover:text-riize-orange transition-colors">Melon Music Awards (MMA 2023)</h5>
+                        <p class="text-sm text-gray-300">New Artist of the Year (Rookie)</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-black group-hover:bg-riize-orange group-hover:scale-125 transition-all"></div>
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-riize-orange/40 backdrop-blur-md transition-all duration-300 space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-gray-300">2024</span>
+                            <i class="fas fa-trophy text-amber-400/80"></i>
+                        </div>
+                        <h5 class="font-bold text-lg text-white group-hover:text-riize-orange transition-colors">Seoul Music Awards 2024</h5>
+                        <p class="text-sm text-gray-300">Rookie of the Year & Bonsang</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-black group-hover:bg-riize-orange group-hover:scale-125 transition-all"></div>
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-riize-orange/40 backdrop-blur-md transition-all duration-300 space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-gray-300">2024</span>
+                            <i class="fas fa-trophy text-amber-400/80"></i>
+                        </div>
+                        <h5 class="font-bold text-lg text-white group-hover:text-riize-orange transition-colors">Golden Disc Awards 2024</h5>
+                        <p class="text-sm text-gray-300">Rookie Artist of the Year</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 5 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-black group-hover:bg-riize-orange group-hover:scale-125 transition-all"></div>
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-riize-orange/40 backdrop-blur-md transition-all duration-300 space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-gray-300">2024</span>
+                            <i class="fas fa-trophy text-amber-400/80"></i>
+                        </div>
+                        <h5 class="font-bold text-lg text-white group-hover:text-riize-orange transition-colors">CCMA (Circle Chart Music Awards)</h5>
+                        <p class="text-sm text-gray-300">Rookie of the Year (Unique Streaming)</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- RIGHT: Music Show Trophy Showcase - занимает 5 คอลัมน์ -->
+        <div class="lg:col-span-5 space-y-6">
+            <div class="flex items-center space-x-3 text-riize-orange mb-6">
+                <div class="w-10 h-10 rounded-xl bg-riize-orange/20 flex items-center justify-center border border-riize-orange/40">
+                    <i class="fas fa-music text-xl"></i>
+                </div>
+                <h4 data-i18n="award-cat-music" class="text-2xl font-bold text-white tracking-wide">ถ้วยรางวัลรายการเพลง</h4>
             </div>
 
-            <!-- Variety Grid Container -->
-            <div id="variety-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Dynamically generated via JS -->
+            <!-- Showcase Card 1 -->
+            <div class="p-6 rounded-3xl bg-gradient-to-br from-riize-orange/20 via-white/5 to-transparent border border-riize-orange/30 backdrop-blur-xl relative overflow-hidden group hover:border-riize-orange transition-all">
+                <div class="absolute -right-4 -bottom-4 text-white/5 text-9xl font-black pointer-events-none group-hover:text-riize-orange/10 transition-colors">01</div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="inline-block text-[10px] uppercase font-black tracking-widest px-2.5 py-1 rounded bg-amber-400 text-black mb-2 shadow-md">1st WIN EVER 🏆</span>
+                        <h5 class="text-2xl font-black text-white">Love 119</h5>
+                    </div>
+                    <span data-i18n="win-date-jan" class="text-xs text-gray-400 bg-black/40 px-3 py-1 rounded-full border border-white/10">มกราคม 2024</span>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-300 relative z-10">
+                    <li class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-riize-orange text-xs"></i>
+                        <span>Mnet <strong class="text-white">M COUNTDOWN</strong> (ถ้วยแรกหลังเดบิวต์)</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-riize-orange text-xs"></i>
+                        <span>SBS <strong class="text-white">Inkigayo</strong></span>
+                    </li>
+                </ul>
             </div>
-        </section>
+
+            <!-- Showcase Card 2 -->
+            <div class="p-6 rounded-3xl bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-white/10 backdrop-blur-xl relative overflow-hidden group hover:border-riize-orange transition-all">
+                <div class="absolute -right-4 -bottom-4 text-white/5 text-9xl font-black pointer-events-none group-hover:text-riize-orange/10 transition-colors">02</div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="inline-block text-[10px] uppercase font-black tracking-widest px-2.5 py-1 rounded bg-riize-orange/20 text-riize-orange border border-riize-orange/30 mb-2">TRIPLE CROWN 👑</span>
+                        <h5 class="text-2xl font-black text-white">Boom Boom Bass</h5>
+                    </div>
+                    <span data-i18n="win-date-jun" class="text-xs text-gray-400 bg-black/40 px-3 py-1 rounded-full border border-white/10">มิถุนายน 2024</span>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-300 relative z-10">
+                    <li class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-riize-orange text-xs"></i>
+                        <span>SBS M <strong class="text-white">THE SHOW</strong></span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-riize-orange text-xs"></i>
+                        <span>MBC M <strong class="text-white">SHOW CHAMPION</strong></span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-riize-orange text-xs"></i>
+                        <span>KBS <strong class="text-white">Music Bank</strong></span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
         <!-- OFFICIAL FEEDS SECTION -->
         <section id="social" class="scroll-mt-24">
