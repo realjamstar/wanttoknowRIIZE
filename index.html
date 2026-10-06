@@ -903,13 +903,13 @@ function renderMemberDetail() {
     const soloLabels = {
         th: {
             mainTitle: 'ผลงานเดี่ยว (Solo Activities)',
-            brands: 'งานพรีเซนเตอร์ / แบรนด์แอมบาสเดอร์ (ชี้เพื่อดูรูปตัวอย่าง)',
+            brands: 'งานพรีเซนเตอร์ / แบรนด์แอมบาสเดอร์ (ชี้เพื่อดูรูป / คลิกเพื่อขยาย)',
             songs: 'เพลงเดี่ยว / OST (ฟังเพลงได้ทันที)',
             shows: 'คลิปรายการเดี่ยว / MC (กดดูบน YouTube)'
         },
         en: {
             mainTitle: 'Solo Activities',
-            brands: 'Brand Ambassador & Endorsements (Hover to preview)',
+            brands: 'Brand Ambassador & Endorsements (Hover & Click to expand)',
             songs: 'Solo Songs & OST (Listen on Spotify)',
             shows: 'Solo Shows & MC (Watch on YouTube)'
         }
@@ -973,7 +973,7 @@ function renderMemberDetail() {
                     </h4>
                     
                     <div class="space-y-5">
-                        <!-- 1.1 Brand Ambassador (Image Pop-up Preview on Hover) -->
+                        <!-- 1.1 Brand Ambassador (Image Pop-up Preview + Click to Expand Modal) -->
                         <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-2">
                             <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
                                 <i class="fas fa-bullhorn text-xs mr-2"></i> ${currentSoloText.brands}
@@ -989,10 +989,15 @@ function renderMemberDetail() {
                                             </span>
                                         </div>
 
-                                        <!-- Pop-up Preview Box -->
+                                        <!-- Pop-up Hover Preview Box -->
                                         <div class="hidden group-hover:flex absolute left-0 bottom-full mb-2 z-50 p-2 bg-gray-900 border border-riize-orange rounded-xl shadow-2xl space-x-2 animate-fade-in">
                                             ${b.images.map(img => `
-                                                <img src="${img}" class="w-28 h-20 sm:w-36 sm:h-24 object-cover rounded-lg border border-white/10">
+                                                <div class="relative overflow-hidden rounded-lg group/img cursor-pointer" onclick="openImageModal('${img}')">
+                                                    <img src="${img}" class="w-28 h-20 sm:w-36 sm:h-24 object-cover border border-white/10 hover:scale-105 transition-transform">
+                                                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity">
+                                                        <i class="fas fa-search-plus text-white text-xs"></i>
+                                                    </div>
+                                                </div>
                                             `).join('')}
                                         </div>
                                     </div>
@@ -1023,7 +1028,7 @@ function renderMemberDetail() {
                             <div class="space-y-2 pt-1">
                                 ${solo.shows.map(v => `
                                     <a href="${v.url}" target="_blank" class="p-2.5 rounded-lg bg-white/5 border border-white/10 hover:border-red-500 hover:bg-red-500/10 transition-all flex items-center justify-between group">
-                                        <span class="text-xs sm:text-sm text-gray-200 group-hover:text-white font-medium">${v.url ? v.title[lang] : v.title[lang]}</span>
+                                        <span class="text-xs sm:text-sm text-gray-200 group-hover:text-white font-medium">${v.title[lang]}</span>
                                         <span class="text-xs text-red-400 group-hover:text-red-300 flex items-center space-x-1">
                                             <span>เปิดบน YouTube</span>
                                             <i class="fas fa-external-link-alt text-[10px]"></i>
@@ -1038,6 +1043,30 @@ function renderMemberDetail() {
         </div>
     `;
 }
+function openImageModal(imgUrl) {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img-element');
+    if (modal && modalImg) {
+        modalImg.src = imgUrl;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // ป้องกันการสกอร์ลหน้าเว็บด้านหลัง
+    }
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('image-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = ''; // คืนค่าการสกอร์ลหน้าเว็บ
+    }
+}
+
+// กดปุ่ม Esc บนคีย์บอร์ดเพื่อปิดป๊อปอัปได้ด้วย
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeImageModal();
+    }
+});
 
         /* =======================================================
            2. DISCOGRAPHY DATA & RENDER
@@ -1569,5 +1598,14 @@ function renderDiscography() {
             updatePageLanguage();
         });
     </script>
+<!-- Lightbox Image Modal -->
+<div id="image-modal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4" onclick="closeImageModal()">
+    <div class="relative max-w-4xl max-h-[90vh] p-2" onclick="event.stopPropagation()">
+        <button onclick="closeImageModal()" class="absolute -top-4 -right-4 bg-riize-orange text-black font-bold w-10 h-10 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center z-10">
+            <i class="fas fa-times text-lg"></i>
+        </button>
+        <img id="modal-img-element" src="" alt="Expanded View" class="max-w-full max-h-[85vh] rounded-2xl border-2 border-riize-orange/50 shadow-2xl object-contain">
+    </div>
+</div>
 </body>
 </html>
