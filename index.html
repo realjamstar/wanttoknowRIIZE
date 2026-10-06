@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"BRIIZE's site for RIIZE (라이즈)"</title>
+    <title>BRIIZE's site for RIIZE (라이즈)</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -596,206 +596,341 @@
            1. MEMBER PROFILES DATA & INTERACTIVE SHOWCASE
            ======================================================= */
         const membersData = [
-            {
-                id: 'shotaro',
-                name: 'SHOTARO (โชทาโร่)',
-                nativeName: 'ショウタロウ / Osaki Shotaro',
-                role: { th: 'Main Dancer, Rapper', en: 'Main Dancer, Rapper' },
-                dob: { th: '25 พฤศจิกายน 2000', en: 'November 25, 2000' },
-                nationality: { th: 'ญี่ปุ่น (Japan)', en: 'Japanese' },
-                image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/028/92/719/2892719_20260612155100_500.jpg',
-                timeline: {
-                    th: [
-                        { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เคยเป็นแดนเซอร์มืออาชีพที่ EXPG Studio ประเทศญี่ปุ่น เคยร่วมงานเต้นแบ็คอัพให้ศิลปินชื่อดังมากมาย' },
-                        { era: '2020 (NCT)', detail: 'เข้าสู่ SM Entertainment และเปิดตัวอย่างเป็นทางการครั้งแรกในยูนิต NCT U ด้วยเพลง Make A Wish' },
-                        { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'เปิดตัวในฐานะสมาชิก RIIZE โชว์ทักษะการเต้นระดับสูงและเป็นพี่ใหญ่คอยดูแลน้องๆ ในวง' }
-                    ],
-                    en: [
-                        { era: 'Pre-debut', detail: 'Professional dancer at EXPG Studio Japan, backup dancer for top Japanese artists.' },
-                        { era: '2020 (NCT)', detail: 'Joined SM Entertainment and debuted officially in NCT U with "Make A Wish".' },
-                        { era: '2023 - Present (RIIZE)', detail: 'Re-debuted in RIIZE, taking the lead as main dancer and oldest member caring for the team.' }
-                    ]
-                }
+    {
+        id: 'shotaro',
+        name: 'SHOTARO (โชทาโร่)',
+        nativeName: 'ショウタロウ / Osaki Shotaro',
+        role: { th: 'Main Dancer, Rapper', en: 'Main Dancer, Rapper' },
+        dob: { th: '25 พฤศจิกายน 2000', en: 'November 25, 2000' },
+        nationality: { th: 'ญี่ปุ่น (Japan)', en: 'Japanese' },
+        image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/028/92/719/2892719_20260612155100_500.jpg',
+        timeline: {
+            th: [
+                { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เคยเป็นแดนเซอร์มืออาชีพที่ EXPG Studio ประเทศญี่ปุ่น เคยร่วมงานเต้นแบ็คอัพให้ศิลปินชื่อดังมากมาย' },
+                { era: '2020 (NCT)', detail: 'เข้าสู่ SM Entertainment และเปิดตัวอย่างเป็นทางการครั้งแรกในยูนิต NCT U ด้วยเพลง Make A Wish' },
+                { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'เปิดตัวในฐานะสมาชิก RIIZE โชว์ทักษะการเต้นระดับสูงและเป็นพี่ใหญ่คอยดูแลน้องๆ ในวง' }
+            ],
+            en: [
+                { era: 'Pre-debut', detail: 'Professional dancer at EXPG Studio Japan, backup dancer for top Japanese artists.' },
+                { era: '2020 (NCT)', detail: 'Joined SM Entertainment and debuted officially in NCT U with "Make A Wish".' },
+                { era: '2023 - Present (RIIZE)', detail: 'Re-debuted in RIIZE, taking the lead as main dancer and oldest member caring for the team.' }
+            ]
+        },
+        soloWorks: {
+            th: {
+                brands: ['M·A·C Cosmetics Japan (Brand Ambassador)', 'PUMA Japan Campaign Model'],
+                songs: ['Co-choreography & Dance Performance "Get A Guitar" / "Talk Saxy"', 'NCT U - "Make A Wish (Birthday Song)"'],
+                shows: ['Dance Practice Logs & Dance Analysis Content', 'Street Woman Fighter 2 Special Appearance / Dance Content']
             },
-            {
-                id: 'eunseok',
-                name: 'EUNSEOK (อึนซอก)',
-                nativeName: '송은석 / Song Eunseok',
-                role: { th: 'Vocalist, Visual', en: 'Vocalist, Visual' },
-                dob: { th: '19 มีนาคม 2001', en: 'March 19, 2001' },
-                nationality: { th: 'เกาหลีใต้ (South Korea)', en: 'Korean' },
-                image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/515/3478515_20260612155110_500.jpg',
-                timeline: {
-                    th: [
-                        { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'ถูกแคสติ้งเข้า SM Entertainment ขณะกำลังเดินกลับบ้าน ได้รับการฝึกฝนทักษะการร้องและแสดงนานกว่า 5 ปี' },
-                        { era: '2022 (SMROOKIES)', detail: 'เปิดตัวเป็นสมาชิก SMROOKIES ร่วมกับซองชานและโชทาโร่ในรายการวาไรตี้ต่างๆ' },
-                        { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'เดบิวต์ในวง RIIZE โดดเด่นด้วยโทนเสียงนุ่มต่ำเสน่ห์วิชวล และบุคลิกตลกนิ่งๆ (Deadpan humor)' }
-                    ],
-                    en: [
-                        { era: 'Pre-debut', detail: 'Cast on the street by SM Entertainment scouts, trained in vocals and performance for over 5 years.' },
-                        { era: '2022 (SMROOKIES)', detail: 'Introduced as a key SMROOKIES member alongside Sungchan and Shotaro.' },
-                        { era: '2023 - Present (RIIZE)', detail: 'Debuted in RIIZE, recognized for his deep warm vocal tone, stunning visuals, and witty deadpan humor.' }
-                    ]
-                }
-            },
-            {
-                id: 'sungchan',
-                name: 'SUNGCHAN (ซองชาน)',
-                nativeName: '정성찬 / Jung Sungchan',
-                role: { th: 'Rapper, Vocalist', en: 'Rapper, Vocalist' },
-                dob: { th: '13 กันยายน 2001', en: 'September 13, 2001' },
-                nationality: { th: 'เกาหลีใต้ (South Korea)', en: 'Korean' },
-                image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/028/92/718/2892718_20260612155125_500.jpg',
-                timeline: {
-                    th: [
-                        { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เข้าเป็นเด็กฝึก SM Entertainment ตั้งแต่ปี 2016 ฝึกฝนทักษะการแร็ปและร่างกายอย่างหนัก' },
-                        { era: '2020 (NCT)', detail: 'เปิดตัวใน NCT ด้วยเพลง 90\'s Love ได้รับรางวัล Rookie of the Year และเคยเป็น MC รายการ Music Bank' },
-                        { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'ย้ายมาเปิดตัวใหม่กับ RIIZE ร่วมสร้างฐานแฟนคลับและทำหน้าที่แร็ปหลักด้วยฟิสิคัลความสูง 185+ ซม.' }
-                    ],
-                    en: [
-                        { era: 'Pre-debut', detail: 'Joined SM Entertainment as a trainee in 2016, undergoing rigorous rap and athletic training.' },
-                        { era: '2020 (NCT)', detail: 'Debuted in NCT with "90\'s Love", winning Rookie Awards and hosting as Music Bank MC.' },
-                        { era: '2023 - Present (RIIZE)', detail: 'Re-debuted in RIIZE as lead rapper, known for impressive rap delivery and 185+ cm stature.' }
-                    ]
-                }
-            },
-            {
-                id: 'wonbin',
-                name: 'WONBIN (วอนบิน)',
-                nativeName: '박원빈 / Park Wonbin',
-                role: { th: 'Center, Dancer, Vocalist, Guitarist', en: 'Center, Dancer, Vocalist, Guitarist' },
-                dob: { th: '2 มีนาคม 2002', en: 'March 2, 2002' },
-                nationality: { th: 'เกาหลีใต้ (South Korea)', en: 'Korean' },
-                image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/517/3478517_20260612155139_500.jpg',
-                timeline: {
-                    th: [
-                        { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'ถูกแคสติ้งผ่านทาง Instagram DM โดยทีมงาน SM Entertainment ทักษะโดดเด่นทั้งเต้นและเล่นกีตาร์' },
-                        { era: '2023 (Debut)', detail: 'เปิดตัวเป็น Center สมาชิก RIIZE สร้างกระแสไวรัลทันทีด้วยคาริสมาและทรงผมระดับตํานาน' },
-                        { era: 'ปัจจุบัน', detail: 'มีส่วนร่วมในการออกแบบท่าเต้นของวง และโชว์โซโล่กีตาร์ในเพลง Get A Guitar และเวทีการแสดงระดับโลก' }
-                    ],
-                    en: [
-                        { era: 'Pre-debut', detail: 'Scouted via Instagram DM by SM casting team, skilled in both choreography and guitar.' },
-                        { era: '2023 (Debut)', detail: 'Debuted as RIIZE Center, instantly going viral for his stage presence and signature hair.' },
-                        { era: 'Present', detail: 'Contributes to choreography design and performs guitar solos on "Get A Guitar" global stages.' }
-                    ]
-                }
-            },
-            {
-                id: 'sohee',
-                name: 'SOHEE (โซฮี)',
-                nativeName: '이소희 / Lee Sohee',
-                role: { th: 'Main Vocalist', en: 'Main Vocalist' },
-                dob: { th: '21 พฤศจิกายน 2003', en: 'November 21, 2003' },
-                nationality: { th: 'เกาหลีใต้ (South Korea)', en: 'Korean' },
-                image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/523/3478523_20260612155158_500.jpg',
-                timeline: {
-                    th: [
-                        { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เข้าเรียนในสถาบันดนตรีและฝึกฝนการใช้เสียงอย่างเข้มข้น ก่อนผ่านการออดิชั่นเข้า SM' },
-                        { era: '2023 (Debut)', detail: 'เปิดตัวในฐานะเมนโวคอลของ RIIZE สร้างความทึ่งด้วยเสียงไฮโน้ตที่สดใสและทรงพลัง' },
-                        { era: 'ปัจจุบัน', detail: 'รับหน้าที่เป็น MC ประจำรายการ M Countdown และร้องเพลงประกอบซีรีส์ OST' }
-                    ],
-                    en: [
-                        { era: 'Pre-debut', detail: 'Trained extensively at vocal academies before passing competitive SM auditions.' },
-                        { era: '2023 (Debut)', detail: 'Debuted as Main Vocalist of RIIZE, astounding fans with effortless high notes.' },
-                        { era: 'Present', detail: 'Active as official MC on M Countdown and recording drama OST soundtracks.' }
-                    ]
-                }
-            },
-            {
-                id: 'anton',
-                name: 'ANTON (แอนตัน)',
-                nativeName: '이찬영 / Lee Chanyoung',
-                role: { th: 'Sub Vocalist, Producer, Cello', en: 'Sub Vocalist, Producer, Cello' },
-                dob: { th: '21 มีนาคม 2004', en: 'March 21, 2004' },
-                nationality: { th: 'อเมริกัน-เกาหลี (USA / S. Korea)', en: 'American-Korean' },
-                image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/525/3478525_20260612155202_500.jpg',
-                timeline: {
-                    th: [
-                        { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เติบโตที่นิวเจอร์ซีย์ สหรัฐอเมริกา เป็นนักกีฬาว่ายน้ำเยาวชน และเป็นลูกชายของโปรดิวเซอร์ดนตรีชื่อดัง Yoon Sang' },
-                        { era: '2023 (Debut)', detail: 'ย้ายมาเกาหลีเพื่อเดินตามฝันด้านดนตรี เดบิวต์เป็นมักเน่ (น้องเล็ก) ของ RIIZE' },
-                        { era: 'ปัจจุบัน', detail: 'แต่งและโปรดิวซ์เพลง มีทักษะการเล่นเชลโล่และเบส เป็นที่ชื่นชอบด้วยความน่ารักสดใส' }
-                    ],
-                    en: [
-                        { era: 'Pre-debut', detail: 'Grew up in New Jersey, competitive youth swimmer, son of famed music producer Yoon Sang.' },
-                        { era: '2023 (Debut)', detail: 'Moved to Korea to pursue music, debuting as the beloved youngest member (Maknae) of RIIZE.' },
-                        { era: 'Present', detail: 'Composes music, plays cello and bass guitar, loved for his charming and youthful vibe.' }
-                    ]
-                }
+            en: {
+                brands: ['M·A·C Cosmetics Japan (Brand Ambassador)', 'PUMA Japan Campaign Model'],
+                songs: ['Co-choreography & Dance Performance "Get A Guitar" / "Talk Saxy"', 'NCT U - "Make A Wish (Birthday Song)"'],
+                shows: ['Dance Practice Logs & Dance Analysis Content', 'Street Woman Fighter 2 Special Appearance / Dance Content']
             }
-        ];
+        }
+    },
+    {
+        id: 'eunseok',
+        name: 'EUNSEOK (อึนซอก)',
+        nativeName: '송은석 / Song Eunseok',
+        role: { th: 'Vocalist, Visual', en: 'Vocalist, Visual' },
+        dob: { th: '19 มีนาคม 2001', en: 'March 19, 2001' },
+        nationality: { th: 'เกาหลีใต้ (South Korea)', en: 'Korean' },
+        image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/515/3478515_20260612155110_500.jpg',
+        timeline: {
+            th: [
+                { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'ถูกแคสติ้งเข้า SM Entertainment ขณะกำลังเดินกลับบ้าน ได้รับการฝึกฝนทักษะการร้องและแสดงนานกว่า 5 ปี' },
+                { era: '2022 (SMROOKIES)', detail: 'เปิดตัวเป็นสมาชิก SMROOKIES ร่วมกับซองชานและโชทาโร่ในรายการวาไรตี้ต่างๆ' },
+                { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'เดบิวต์ในวง RIIZE โดดเด่นด้วยโทนเสียงนุ่มต่ำเสน่ห์วิชวล และบุคลิกตลกนิ่งๆ (Deadpan humor)' }
+            ],
+            en: [
+                { era: 'Pre-debut', detail: 'Cast on the street by SM Entertainment scouts, trained in vocals and performance for over 5 years.' },
+                { era: '2022 (SMROOKIES)', detail: 'Introduced as a key SMROOKIES member alongside Sungchan and Shotaro.' },
+                { era: '2023 - Present (RIIZE)', detail: 'Debuted in RIIZE, recognized for his deep warm vocal tone, stunning visuals, and witty deadpan humor.' }
+            ]
+        },
+        soloWorks: {
+            th: {
+                brands: ['Trolls Band Together (KOR Voice Dubbing & Promotion)', 'Fashion Magazine Pictorials (W Korea / Arena)'],
+                songs: ['Trolls Band Together OST - "Keep It Together" (Korean Ver.)'],
+                shows: ['Trolls Movie Dubbing Behind & Voice Acting Showcase', 'SMROOKIES "Welcome to NCT Universe"']
+            },
+            en: {
+                brands: ['Trolls Band Together (KOR Voice Dubbing & Promotion)', 'Fashion Magazine Pictorials (W Korea / Arena)'],
+                songs: ['Trolls Band Together OST - "Keep It Together" (Korean Ver.)'],
+                shows: ['Trolls Movie Dubbing Behind & Voice Acting Showcase', 'SMROOKIES "Welcome to NCT Universe"']
+            }
+        }
+    },
+    {
+        id: 'sungchan',
+        name: 'SUNGCHAN (ซองชาน)',
+        nativeName: '정성찬 / Jung Sungchan',
+        role: { th: 'Rapper, Vocalist', en: 'Rapper, Vocalist' },
+        dob: { th: '13 กันยายน 2001', en: 'September 13, 2001' },
+        nationality: { th: 'เกาหลีใต้ (South Korea)', en: 'Korean' },
+        image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/028/92/718/2892718_20260612155125_500.jpg',
+        timeline: {
+            th: [
+                { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เข้าเป็นเด็กฝึก SM Entertainment ตั้งแต่ปี 2016 ฝึกฝนทักษะการแร็ปและร่างกายอย่างหนัก' },
+                { era: '2020 (NCT)', detail: 'เปิดตัวใน NCT ด้วยเพลง 90\'s Love ได้รับรางวัล Rookie of the Year และเคยเป็น MC รายการ Inkigayo' },
+                { era: '2023 - ปัจจุบัน (RIIZE)', detail: 'ย้ายมาเปิดตัวใหม่กับ RIIZE ร่วมสร้างฐานแฟนคลับและทำหน้าที่แร็ปหลักด้วยฟิสิคัลความสูง 185+ ซม.' }
+            ],
+            en: [
+                { era: 'Pre-debut', detail: 'Joined SM Entertainment as a trainee in 2016, undergoing rigorous rap and athletic training.' },
+                { era: '2020 (NCT)', detail: 'Debuted in NCT with "90\'s Love", winning Rookie Awards and hosting as Inkigayo MC.' },
+                { era: '2023 - Present (RIIZE)', detail: 'Re-debuted in RIIZE as lead rapper, known for impressive rap delivery and 185+ cm stature.' }
+            ]
+        },
+        soloWorks: {
+            th: {
+                brands: ['Round Lab (Skincare Brand Ambassador)', 'Dr.G Cosmetics Campaign Model'],
+                songs: ['NCT U - "90\'s Love"', 'NCT U - "Light Bulb"'],
+                shows: ['SBS Inkigayo Fixed MC (2021-2022)', 'MBC "Omniscient Interfering View" Guest Appearance']
+            },
+            en: {
+                brands: ['Round Lab (Skincare Brand Ambassador)', 'Dr.G Cosmetics Campaign Model'],
+                songs: ['NCT U - "90\'s Love"', 'NCT U - "Light Bulb"'],
+                shows: ['SBS Inkigayo Fixed MC (2021-2022)', 'MBC "Omniscient Interfering View" Guest Appearance']
+            }
+        }
+    },
+    {
+        id: 'wonbin',
+        name: 'WONBIN (วอนบิน)',
+        nativeName: '박원빈 / Park Wonbin',
+        role: { th: 'Center, Dancer, Vocalist, Guitarist', en: 'Center, Dancer, Vocalist, Guitarist' },
+        dob: { th: '2 มีนาคม 2002', en: 'March 2, 2002' },
+        nationality: { th: 'เกาหลีใต้ (South Korea)', en: 'Korean' },
+        image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/517/3478517_20260612155139_500.jpg',
+        timeline: {
+            th: [
+                { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'ถูกแคสติ้งผ่านทาง Instagram DM โดยทีมงาน SM Entertainment ทักษะโดดเด่นทั้งเต้นและเล่นกีตาร์' },
+                { era: '2023 (Debut)', detail: 'เปิดตัวเป็น Center สมาชิก RIIZE สร้างกระแสไวรัลทันทีด้วยคาริสมาและทรงผมระดับตํานาน' },
+                { era: 'ปัจจุบัน', detail: 'มีส่วนร่วมในการออกแบบท่าเต้นของวง และโชว์โซโล่กีตาร์ในเพลง Get A Guitar และเวทีการแสดงระดับโลก' }
+            ],
+            en: [
+                { era: 'Pre-debut', detail: 'Scouted via Instagram DM by SM casting team, skilled in both choreography and guitar.' },
+                { era: '2023 (Debut)', detail: 'Debuted as RIIZE Center, instantly going viral for his stage presence and signature hair.' },
+                { era: 'Present', detail: 'Contributes to choreography design and performs guitar solos on "Get A Guitar" global stages.' }
+            ]
+        },
+        soloWorks: {
+            th: {
+                brands: ['RIIZE x Louis Vuitton House Ambassador (Center Visual)', 'Ahn Jung Hwan\'s Custom Guitar Endorsement'],
+                songs: ['Solo Guitar Performance "Get A Guitar" Intro (Live Stages)', 'Co-choreography "Siren" & "Siren Dance Break"'],
+                shows: ['Mnet M Countdown Special MC', 'Choreography Behind & Guitar Solo Practice Vlogs']
+            },
+            en: {
+                brands: ['RIIZE x Louis Vuitton House Ambassador (Center Visual)', 'Ahn Jung Hwan\'s Custom Guitar Endorsement'],
+                songs: ['Solo Guitar Performance "Get A Guitar" Intro (Live Stages)', 'Co-choreography "Siren" & "Siren Dance Break"'],
+                shows: ['Mnet M Countdown Special MC', 'Choreography Behind & Guitar Solo Practice Vlogs']
+            }
+        }
+    },
+    {
+        id: 'sohee',
+        name: 'SOHEE (โซฮี)',
+        nativeName: '이소희 / Lee Sohee',
+        role: { th: 'Main Vocalist', en: 'Main Vocalist' },
+        dob: { th: '21 พฤศจิกายน 2003', en: 'November 21, 2003' },
+        nationality: { th: 'เกาหลีใต้ (South Korea)', en: 'Korean' },
+        image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/523/3478523_20260612155158_500.jpg',
+        timeline: {
+            th: [
+                { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เข้าเรียนในสถาบันดนตรีและฝึกฝนการใช้เสียงอย่างเข้มข้น ก่อนผ่านการออดิชั่นเข้า SM' },
+                { era: '2023 (Debut)', detail: 'เปิดตัวในฐานะเมนโวคอลของ RIIZE สร้างความทึ่งด้วยเสียงไฮโน้ตที่สดใสและทรงพลัง' },
+                { era: 'ปัจจุบัน', detail: 'รับหน้าที่เป็น MC ประจำรายการ M Countdown และร้องเพลงประกอบซีรีส์ OST' }
+            ],
+            en: [
+                { era: 'Pre-debut', detail: 'Trained extensively at vocal academies before passing competitive SM auditions.' },
+                { era: '2023 (Debut)', detail: 'Debuted as Main Vocalist of RIIZE, astounding fans with effortless high notes.' },
+                { era: 'Present', detail: 'Active as official MC on M Countdown and recording drama OST soundtracks.' }
+            ]
+        },
+        soloWorks: {
+            th: {
+                brands: ['Baskin Robbins Korea Commercial Model', 'Olive Young Skincare Campaign'],
+                songs: ['OST "Love 119" Solo Acoustic Cover Version', 'SM Station / Collaboration Vocal Tracks'],
+                shows: ['Mnet M Countdown Fixed Official MC (2024 - Present)', 'King of Mask Singer Contestant']
+            },
+            en: {
+                brands: ['Baskin Robbins Korea Commercial Model', 'Olive Young Skincare Campaign'],
+                songs: ['OST "Love 119" Solo Acoustic Cover Version', 'SM Station / Collaboration Vocal Tracks'],
+                shows: ['Mnet M Countdown Fixed Official MC (2024 - Present)', 'King of Mask Singer Contestant']
+            }
+        }
+    },
+    {
+        id: 'anton',
+        name: 'ANTON (แอนตัน)',
+        nativeName: '이찬영 / Lee Chanyoung',
+        role: { th: 'Sub Vocalist, Producer, Cello', en: 'Sub Vocalist, Producer, Cello' },
+        dob: { th: '21 มีนาคม 2004', en: 'March 21, 2004' },
+        nationality: { th: 'อเมริกัน-เกาหลี (USA / S. Korea)', en: 'American-Korean' },
+        image: 'https://cdnimg.melon.co.kr/cm2/artistcrop/images/034/78/525/3478525_20260612155202_500.jpg',
+        timeline: {
+            th: [
+                { era: 'ก่อนเดบิวต์ (Pre-debut)', detail: 'เติบโตที่นิวเจอร์ซีย์ สหรัฐอเมริกา เป็นนักกีฬาว่ายน้ำเยาวชน และเป็นลูกชายของโปรดิวเซอร์ดนตรีชื่อดัง Yoon Sang' },
+                { era: '2023 (Debut)', detail: 'ย้ายมาเกาหลีเพื่อเดินตามฝันด้านดนตรี เดบิวต์เป็นมักเน่ (น้องเล็ก) ของ RIIZE' },
+                { era: 'ปัจจุบัน', detail: 'แต่งและโปรดิวซ์เพลง มีทักษะการเล่นเชลโล่และเบส เป็นที่ชื่นชอบด้วยความน่ารักสดใส' }
+            ],
+            en: [
+                { era: 'Pre-debut', detail: 'Grew up in New Jersey, competitive youth swimmer, son of famed music producer Yoon Sang.' },
+                { era: '2023 (Debut)', detail: 'Moved to Korea to pursue music, debuting as the beloved youngest member (Maknae) of RIIZE.' },
+                { era: 'Present', detail: 'Composes music, plays cello and bass guitar, loved for his charming and youthful vibe.' }
+            ]
+        },
+        soloWorks: {
+            th: {
+                brands: ['ESTÉE LAUDER Korea Campaign Model', 'Louis Vuitton Individual Pictorials'],
+                songs: ['RIIZE Track Track Sound Producing & Track Arranging', 'Solo Cello Performance - IU "Love wins all" Stage Cover'],
+                shows: ['SBS "Unanswered Questions" (Yoon Sang Special Appearance)', 'YouTube Music Production Vlogs & Bass Jam Sessions']
+            },
+            en: {
+                brands: ['ESTÉE LAUDER Korea Campaign Model', 'Louis Vuitton Individual Pictorials'],
+                songs: ['RIIZE Track Track Sound Producing & Track Arranging', 'Solo Cello Performance - IU "Love wins all" Stage Cover'],
+                shows: ['SBS "Unanswered Questions" (Yoon Sang Special Appearance)', 'YouTube Music Production Vlogs & Bass Jam Sessions']
+            }
+        }
+    }
+];
 
         let selectedMemberId = 'wonbin';
 
-        function renderMemberGrid() {
-            const grid = document.getElementById('member-cards-grid');
-            grid.innerHTML = membersData.map(m => `
-                <button onclick="selectMember('${m.id}')" class="p-3 rounded-xl border transition-all text-center flex flex-col items-center ${m.id === selectedMemberId ? 'bg-riize-orange/20 border-riize-orange scale-105 shadow-lg' : 'glass-panel border-riize-border hover:border-gray-500'}">
-                    <img src="${m.image}" alt="${m.name}" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-2 border-2 ${m.id === selectedMemberId ? 'border-riize-orange' : 'border-transparent'}">
-                    <span class="font-bold text-xs sm:text-sm text-white">${m.name.split(' ')[0]}</span>
-                </button>
-            `).join('');
+function renderMemberGrid() {
+    const grid = document.getElementById('member-cards-grid');
+    grid.innerHTML = membersData.map(m => `
+        <button onclick="selectMember('${m.id}')" class="p-3 rounded-xl border transition-all text-center flex flex-col items-center ${m.id === selectedMemberId ? 'bg-riize-orange/20 border-riize-orange scale-105 shadow-lg' : 'glass-panel border-riize-border hover:border-gray-500'}">
+            <img src="${m.image}" alt="${m.name}" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-2 border-2 ${m.id === selectedMemberId ? 'border-riize-orange' : 'border-transparent'}">
+            <span class="font-bold text-xs sm:text-sm text-white">${m.name.split(' ')[0]}</span>
+        </button>
+    `).join('');
+}
+
+function selectMember(id) {
+    selectedMemberId = id;
+    renderMemberGrid();
+    renderMemberDetail();
+}
+
+function renderMemberDetail() {
+    const member = membersData.find(m => m.id === selectedMemberId);
+    const detailBox = document.getElementById('member-detail-box');
+    const lang = currentLang;
+    const dict = i18nDict[lang];
+
+    const solo = member.soloWorks[lang];
+
+    // ข้อความหัวข้อแปลภาษาสำหรับผลงานเดี่ยว
+    const soloLabels = {
+        th: {
+            mainTitle: 'ผลงานเดี่ยว (Solo Activities)',
+            brands: 'งานพรีเซนเตอร์ / แบรนด์แอมบาสเดอร์',
+            songs: 'เพลงเดี่ยว / OST / ผลงานดนตรี',
+            shows: 'คลิปรายการเดี่ยว / MC / รายการวาไรตี้'
+        },
+        en: {
+            mainTitle: 'Solo Activities',
+            brands: 'Brand Ambassador & Endorsements',
+            songs: 'Solo Songs, OST & Music Projects',
+            shows: 'Solo Shows, MC & Variety Appearances'
         }
+    };
 
-        function selectMember(id) {
-            selectedMemberId = id;
-            renderMemberGrid();
-            renderMemberDetail();
-        }
+    const currentSoloText = soloLabels[lang] || soloLabels['th'];
 
-        function renderMemberDetail() {
-            const member = membersData.find(m => m.id === selectedMemberId);
-            const detailBox = document.getElementById('member-detail-box');
-            const lang = currentLang;
-            const dict = i18nDict[lang];
+    detailBox.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <!-- Left Column: Member Info Card -->
+            <div class="space-y-4 text-center lg:text-left sticky top-24">
+                <img src="${member.image}" alt="${member.name}" class="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl object-cover mx-auto lg:mx-0 border-2 border-riize-orange shadow-2xl">
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white">${member.name}</h3>
+                    <p class="text-riize-orange font-medium text-sm">${member.nativeName}</p>
+                </div>
+            </div>
 
-            detailBox.innerHTML = `
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                    <div class="space-y-4 text-center lg:text-left">
-                        <img src="${member.image}" alt="${member.name}" class="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl object-cover mx-auto lg:mx-0 border-2 border-riize-orange shadow-2xl">
-                        <div>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">${member.name}</h3>
-                            <p class="text-riize-orange font-medium text-sm">${member.nativeName}</p>
-                        </div>
+            <!-- Right Column: Timeline & Solo Works -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Basic Info Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-pos']}</p>
+                        <p class="font-semibold text-white">${member.role[lang]}</p>
                     </div>
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-dob']}</p>
+                        <p class="font-semibold text-white">${member.dob[lang]}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-nat']}</p>
+                        <p class="font-semibold text-white">${member.nationality[lang]}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-agency']}</p>
+                        <p class="font-semibold text-white">SM Entertainment</p>
+                    </div>
+                </div>
 
-                    <div class="lg:col-span-2 space-y-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
-                            <div>
-                                <p class="text-xs text-gray-400 uppercase">${dict['member-label-pos']}</p>
-                                <p class="font-semibold text-white">${member.role[lang]}</p>
+                <!-- Timeline Section -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-3 flex items-center">
+                        <i class="fas fa-history text-riize-orange mr-2"></i> ${dict['member-timeline-title']}
+                    </h4>
+                    <div class="space-y-3 relative border-l-2 border-riize-orange/30 ml-3 pl-4">
+                        ${member.timeline[lang].map(item => `
+                            <div class="relative">
+                                <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-riize-orange"></div>
+                                <span class="text-xs font-bold text-riize-orange uppercase tracking-wider">${item.era}</span>
+                                <p class="text-sm text-gray-300 mt-0.5">${item.detail}</p>
                             </div>
-                            <div>
-                                <p class="text-xs text-gray-400 uppercase">${dict['member-label-dob']}</p>
-                                <p class="font-semibold text-white">${member.dob[lang]}</p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-400 uppercase">${dict['member-label-nat']}</p>
-                                <p class="font-semibold text-white">${member.nationality[lang]}</p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-400 uppercase">${dict['member-label-agency']}</p>
-                                <p class="font-semibold text-white">SM Entertainment</p>
-                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- NEW: Solo Works Section -->
+                <div class="pt-4 border-t border-riize-border/60">
+                    <h4 class="text-lg font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-star text-riize-orange mr-2"></i> ${currentSoloText.mainTitle}
+                    </h4>
+                    
+                    <div class="space-y-4">
+                        <!-- 1.1 Brand Ambassador -->
+                        <div class="p-3.5 bg-black/30 rounded-xl border border-white/5 space-y-1.5">
+                            <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
+                                <i class="fas fa-bullhorn text-xs mr-2"></i> ${currentSoloText.brands}
+                            </h5>
+                            <ul class="list-disc list-inside text-xs sm:text-sm text-gray-300 space-y-1">
+                                ${solo.brands.map(b => `<li>${b}</li>`).join('')}
+                            </ul>
                         </div>
 
-                        <div>
-                            <h4 class="text-lg font-bold text-white mb-3 flex items-center">
-                                <i class="fas fa-history text-riize-orange mr-2"></i> ${dict['member-timeline-title']}
-                            </h4>
-                            <div class="space-y-3 relative border-l-2 border-riize-orange/30 ml-3 pl-4">
-                                ${member.timeline[lang].map(item => `
-                                    <div class="relative">
-                                        <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-riize-orange"></div>
-                                        <span class="text-xs font-bold text-riize-orange uppercase tracking-wider">${item.era}</span>
-                                        <p class="text-sm text-gray-300 mt-0.5">${item.detail}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
+                        <!-- 1.2 Solo Songs -->
+                        <div class="p-3.5 bg-black/30 rounded-xl border border-white/5 space-y-1.5">
+                            <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
+                                <i class="fas fa-music text-xs mr-2"></i> ${currentSoloText.songs}
+                            </h5>
+                            <ul class="list-disc list-inside text-xs sm:text-sm text-gray-300 space-y-1">
+                                ${solo.songs.map(s => `<li>${s}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <!-- 1.3 Shows / MC -->
+                        <div class="p-3.5 bg-black/30 rounded-xl border border-white/5 space-y-1.5">
+                            <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
+                                <i class="fas fa-tv text-xs mr-2"></i> ${currentSoloText.shows}
+                            </h5>
+                            <ul class="list-disc list-inside text-xs sm:text-sm text-gray-300 space-y-1">
+                                ${solo.shows.map(v => `<li>${v}</li>`).join('')}
+                            </ul>
                         </div>
                     </div>
                 </div>
-            `;
-        }
+            </div>
+        </div>
+    `;
+}
 
         /* =======================================================
            2. DISCOGRAPHY DATA & RENDER
