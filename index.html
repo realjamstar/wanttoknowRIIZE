@@ -993,12 +993,13 @@ function renderMemberDetail() {
                                 <i class="fas fa-bullhorn text-xs mr-2"></i> ${currentSoloText.brands}
                             </h5>
                             <div class="space-y-2 pt-1">
-                                ${brands.map((b, brandIdx) => {
+                                ${brands.map((b) => {
                                     const hasImages = b.images && b.images.length > 0;
+                                    const imagesJson = hasImages ? encodeURIComponent(JSON.stringify(b.images)) : '';
                                     return `
                                     <div class="relative group inline-block w-full">
                                         <!-- แถบรายการหลัก -->
-                                        <div ${hasImages ? `onclick="openBrandGallery('${selectedMemberId}', ${brandIdx}, 0)"` : ''} 
+                                        <div ${hasImages ? `onclick="triggerImageModalFromData(this, 0)" data-images="${imagesJson}"` : ''} 
                                              class="p-2.5 rounded-lg bg-white/5 border border-white/10 hover:border-riize-orange hover:bg-white/10 transition-all flex items-center justify-between cursor-pointer">
                                             <span class="text-xs sm:text-sm text-gray-200 font-medium">${b.title?.[lang] || b.title}</span>
                                             <span class="text-[10px] text-gray-400 bg-white/10 px-2 py-0.5 rounded-full flex items-center space-x-1 group-hover:text-riize-orange group-hover:bg-riize-orange/20 transition-all">
@@ -1007,15 +1008,16 @@ function renderMemberDetail() {
                                             </span>
                                         </div>
 
-                                        <!-- Pop-up Preview (ใช้ button และเรียก openBrandGallery โดยตรง) -->
+                                        <!-- Pop-up Preview -->
                                         ${hasImages ? `
                                         <div class="hidden group-hover:flex hover:flex absolute right-0 bottom-full pb-2 z-40"
                                              onclick="event.stopPropagation();">
                                             <div class="p-2 bg-gray-900/95 border border-riize-orange rounded-xl shadow-2xl flex space-x-2">
                                                 ${b.images.map((img, imgIdx) => `
                                                     <button type="button" 
+                                                            data-images="${imagesJson}"
                                                             class="relative overflow-hidden rounded-lg cursor-pointer group/img focus:outline-none" 
-                                                            onclick="openBrandGallery('${selectedMemberId}', ${brandIdx},${imgIdx}); event.stopPropagation();">
+                                                            onclick="triggerImageModalFromData(this, ${imgIdx}); event.stopPropagation();">
                                                         <img src="${img}" alt="Preview ${imgIdx + 1}" class="w-28 h-20 sm:w-36 sm:h-24 object-cover border border-white/10 hover:scale-105 transition-transform pointer-events-none">
                                                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none">
                                                             <i class="fas fa-search-plus text-white text-xs"></i>
@@ -1028,23 +1030,6 @@ function renderMemberDetail() {
                                     </div>
                                     `;
                                 }).join('')}
-                            </div>
-                        </div>
-                        ` : ''}
-
-                        <!-- 1.2 Solo Songs -->
-                        ${songs.length > 0 ? `
-                        <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-3">
-                            <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
-                                <i class="fab fa-spotify text-green-500 text-sm mr-2"></i> ${currentSoloText.songs}
-                            </h5>
-                            <div class="space-y-3">
-                                ${songs.map(s => `
-                                    <div class="space-y-1">
-                                        <p class="text-xs text-gray-300 font-semibold">${s.title}</p>
-                                        <iframe src="https://open.spotify.com/embed/track/${s.spotifyTrackId}?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="rounded-xl shadow-md"></iframe>
-                                    </div>
-                                `).join('')}
                             </div>
                         </div>
                         ` : ''}
@@ -1621,7 +1606,30 @@ function openImageModal(images, index = 0) {
     }
 
     let modal = document.getElementById('image-modal');
-    if (!modal) return;
+    
+    // สร้าง Modal HTML ให้อัตโนมัติถ้าหาไม่เจอในหน้าเว็บ
+    if (!modal) {
+        const modalHTML = `
+        <div id="image-modal" class="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
+            <div class="relative max-w-4xl max-h-[90vh] p-2 flex items-center justify-center" onclick="event.stopPropagation()">
+                <button type="button" onclick="closeImageModal()" class="absolute -top-4 -right-4 bg-riize-orange text-black font-extrabold w-10 h-10 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-50 cursor-pointer">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+                <button id="modal-prev-btn" type="button" onclick="changeModalImage(-1, event)" class="absolute left-2 sm:-left-12 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-riize-orange text-white hover:text-black w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 transition-all flex items-center justify-center z-50 cursor-pointer hidden">
+                    <i class="fas fa-chevron-left text-base sm:text-lg"></i>
+                </button>
+                <div class="relative">
+                    <img id="modal-img-element" src="" alt="Expanded Image" class="max-w-full max-h-[80vh] rounded-2xl border-2 border-riize-orange/70 shadow-2xl object-contain mx-auto">
+                    <div id="modal-counter" class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/70 text-white text-xs px-3 py-1 rounded-full border border-white/10 hidden"></div>
+                </div>
+                <button id="modal-next-btn" type="button" onclick="changeModalImage(1, event)" class="absolute right-2 sm:-right-12 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-riize-orange text-white hover:text-black w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 transition-all flex items-center justify-center z-50 cursor-pointer hidden">
+                    <i class="fas fa-chevron-right text-base sm:text-lg"></i>
+                </button>
+            </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        modal = document.getElementById('image-modal');
+    }
 
     updateModalImageContent();
     modal.classList.remove('hidden');
@@ -1719,6 +1727,21 @@ function openBrandGallery(memberId, brandIndex, imgIndex = 0) {
     if (brand && brand.images && brand.images.length > 0) {
         // เรียกฟังก์ชันเปิด Modal
         openImageModal(brand.images, imgIndex);
+    }
+}
+// ฟังก์ชันถอดรหัสรูปภาพจาก data-images และเปิด Modal
+function triggerImageModalFromData(element, index = 0) {
+    if (!element) return;
+    const rawData = element.getAttribute('data-images');
+    if (!rawData) return;
+
+    try {
+        const images = JSON.parse(decodeURIComponent(rawData));
+        if (Array.isArray(images) && images.length > 0) {
+            openImageModal(images, index);
+        }
+    } catch (e) {
+        console.error('Error parsing images:', e);
     }
 }
 </script>
