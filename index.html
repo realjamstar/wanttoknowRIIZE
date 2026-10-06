@@ -1600,16 +1600,7 @@ function renderDiscography() {
             updatePageLanguage();
         });
     </script>
-<!-- Lightbox Image Modal -->
-<div id="image-modal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4" onclick="closeImageModal()">
-    <div class="relative max-w-4xl max-h-[90vh] p-2" onclick="event.stopPropagation()">
-        <button onclick="closeImageModal()" class="absolute -top-4 -right-4 bg-riize-orange text-black font-bold w-10 h-10 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center z-10">
-            <i class="fas fa-times text-lg"></i>
-        </button>
-        <img id="modal-img-element" src="" alt="Expanded View" class="max-w-full max-h-[85vh] rounded-2xl border-2 border-riize-orange/50 shadow-2xl object-contain">
-    </div>
-</div>
-<!-- Modal สำหรับแสดงรูปขยายลอยบนหน้าเว็บ -->
+<!-- Modal สำหรับแสดงรูปขยายลอยบนหน้าเว็บ (ใช้ชุดนี้ชุดเดียว วางไว้ก่อนปิด </body>) -->
 <div id="image-modal" class="fixed inset-0 z-[9999] hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4" onclick="closeImageModal()">
     <div class="relative max-w-4xl max-h-[90vh] p-2" onclick="event.stopPropagation()">
         <!-- ปุ่มปิด [X] -->
