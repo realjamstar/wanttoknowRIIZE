@@ -997,7 +997,7 @@ function renderMemberDetail() {
                                     const hasImages = b.images && b.images.length > 0;
                                     return `
                                     <div class="relative group inline-block w-full">
-                                        <!-- แถบรายการหลัก (คลิกแล้วเปิดภาพแรก) -->
+                                        <!-- แถบรายการหลัก -->
                                         <div ${hasImages ? `onclick="openBrandGallery('${selectedMemberId}', ${brandIdx}, 0)"` : ''} 
                                              class="p-2.5 rounded-lg bg-white/5 border border-white/10 hover:border-riize-orange hover:bg-white/10 transition-all flex items-center justify-between cursor-pointer">
                                             <span class="text-xs sm:text-sm text-gray-200 font-medium">${b.title?.[lang] || b.title}</span>
@@ -1007,20 +1007,20 @@ function renderMemberDetail() {
                                             </span>
                                         </div>
 
-                                        <!-- Pop-up Preview (ปรับแก้ Onclick บนปุ่มรูปภาพโดยตรง) -->
+                                        <!-- Pop-up Preview (ใช้ button และเรียก openBrandGallery โดยตรง) -->
                                         ${hasImages ? `
-                                        <div class="hidden group-hover:flex hover:flex absolute right-0 bottom-full pb-2 z-40">
+                                        <div class="hidden group-hover:flex hover:flex absolute right-0 bottom-full pb-2 z-40"
+                                             onclick="event.stopPropagation();">
                                             <div class="p-2 bg-gray-900/95 border border-riize-orange rounded-xl shadow-2xl flex space-x-2">
                                                 ${b.images.map((img, imgIdx) => `
-                                                    <div role="button"
-                                                         tabindex="0"
-                                                         class="relative overflow-hidden rounded-lg cursor-pointer group/img focus:outline-none" 
-                                                         onclick="openBrandGallery('${selectedMemberId}', ${brandIdx},${imgIdx}); event.stopPropagation();">
+                                                    <button type="button" 
+                                                            class="relative overflow-hidden rounded-lg cursor-pointer group/img focus:outline-none" 
+                                                            onclick="openBrandGallery('${selectedMemberId}', ${brandIdx},${imgIdx}); event.stopPropagation();">
                                                         <img src="${img}" alt="Preview ${imgIdx + 1}" class="w-28 h-20 sm:w-36 sm:h-24 object-cover border border-white/10 hover:scale-105 transition-transform pointer-events-none">
                                                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none">
                                                             <i class="fas fa-search-plus text-white text-xs"></i>
                                                         </div>
-                                                    </div>
+                                                    </button>
                                                 `).join('')}
                                             </div>
                                         </div>
@@ -1711,11 +1711,13 @@ document.addEventListener('keydown', function(e) {
 </div>
 // ฟังก์ชันดึงรูปจาก membersData ตาม memberId และ brandIndex
 function openBrandGallery(memberId, brandIndex, imgIndex = 0) {
-    const member = membersData.find(m => m.id === memberId);
+    // ดึงข้อมูล member
+    const member = typeof membersData !== 'undefined' ? membersData.find(m => m.id === memberId) : null;
     if (!member || !member.soloWorks || !member.soloWorks.brands) return;
 
     const brand = member.soloWorks.brands[brandIndex];
     if (brand && brand.images && brand.images.length > 0) {
+        // เรียกฟังก์ชันเปิด Modal
         openImageModal(brand.images, imgIndex);
     }
 }
