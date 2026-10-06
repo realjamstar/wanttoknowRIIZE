@@ -878,6 +878,8 @@
 
 function renderMemberGrid() {
     const grid = document.getElementById('member-cards-grid');
+    if (!grid) return;
+
     grid.innerHTML = membersData.map(m => `
         <button onclick="selectMember('${m.id}')" class="p-3 rounded-xl border transition-all text-center flex flex-col items-center ${m.id === selectedMemberId ? 'bg-riize-orange/20 border-riize-orange scale-105 shadow-lg' : 'glass-panel border-riize-border hover:border-gray-500'}">
             <img src="${m.image}" alt="${m.name}" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-2 border-2 ${m.id === selectedMemberId ? 'border-riize-orange' : 'border-transparent'}">
@@ -893,23 +895,34 @@ function selectMember(id) {
 }
 
 function renderMemberDetail() {
-    const member = membersData.find(m => m.id === selectedMemberId);
     const detailBox = document.getElementById('member-detail-box');
-    const lang = currentLang;
-    const dict = i18nDict[lang];
+    if (!detailBox) return;
 
-    const solo = member.soloWorks;
+    const member = membersData.find(m => m.id === selectedMemberId);
+    
+    if (!member) {
+        detailBox.innerHTML = '';
+        return;
+    }
+
+    const lang = typeof currentLang !== 'undefined' ? currentLang : 'th';
+    const dict = (typeof i18nDict !== 'undefined' && i18nDict[lang]) ? i18nDict[lang] : {};
+
+    const solo = member.soloWorks || {};
+    const brands = solo.brands || [];
+    const songs = solo.songs || [];
+    const shows = solo.shows || [];
 
     const soloLabels = {
         th: {
             mainTitle: 'ผลงานเดี่ยว (Solo Activities)',
-            brands: 'งานพรีเซนเตอร์ / แบรนด์แอมบาสเดอร์ (ชี้เพื่อดูรูป / คลิกเพื่อขยาย)',
+            brands: 'งานพรีเซนเตอร์ / แบรนด์แอมบาสเดอร์ (ชี้เพื่อพรีวิว / คลิกเพื่อดูรูปใหญ่)',
             songs: 'เพลงเดี่ยว / OST (ฟังเพลงได้ทันที)',
             shows: 'คลิปรายการเดี่ยว / MC (กดดูบน YouTube)'
         },
         en: {
             mainTitle: 'Solo Activities',
-            brands: 'Brand Ambassador & Endorsements (Hover & Click to expand)',
+            brands: 'Brand Ambassador & Endorsements (Hover to preview / Click to enlarge)',
             songs: 'Solo Songs & OST (Listen on Spotify)',
             shows: 'Solo Shows & MC (Watch on YouTube)'
         }
@@ -924,7 +937,7 @@ function renderMemberDetail() {
                 <img src="${member.image}" alt="${member.name}" class="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl object-cover mx-auto lg:mx-0 border-2 border-riize-orange shadow-2xl">
                 <div>
                     <h3 class="text-2xl sm:text-3xl font-extrabold text-white">${member.name}</h3>
-                    <p class="text-riize-orange font-medium text-sm">${member.nativeName}</p>
+                    <p class="text-riize-orange font-medium text-sm">${member.nativeName || ''}</p>
                 </div>
             </div>
 
@@ -933,19 +946,19 @@ function renderMemberDetail() {
                 <!-- Basic Info Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
                     <div>
-                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-pos']}</p>
-                        <p class="font-semibold text-white">${member.role[lang]}</p>
+                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-pos'] || 'POSITION'}</p>
+                        <p class="font-semibold text-white">${member.role?.[lang] || '-'}</p>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-dob']}</p>
-                        <p class="font-semibold text-white">${member.dob[lang]}</p>
+                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-dob'] || 'DATE OF BIRTH'}</p>
+                        <p class="font-semibold text-white">${member.dob?.[lang] || '-'}</p>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-nat']}</p>
-                        <p class="font-semibold text-white">${member.nationality[lang]}</p>
+                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-nat'] || 'NATIONALITY'}</p>
+                        <p class="font-semibold text-white">${member.nationality?.[lang] || '-'}</p>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-agency']}</p>
+                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-agency'] || 'AGENCY'}</p>
                         <p class="font-semibold text-white">SM Entertainment</p>
                     </div>
                 </div>
@@ -953,10 +966,10 @@ function renderMemberDetail() {
                 <!-- Timeline Section -->
                 <div>
                     <h4 class="text-lg font-bold text-white mb-3 flex items-center">
-                        <i class="fas fa-history text-riize-orange mr-2"></i> ${dict['member-timeline-title']}
+                        <i class="fas fa-history text-riize-orange mr-2"></i> ${dict['member-timeline-title'] || 'Timeline'}
                     </h4>
                     <div class="space-y-3 relative border-l-2 border-riize-orange/30 ml-3 pl-4">
-                        ${member.timeline[lang].map(item => `
+                        ${(member.timeline?.[lang] || []).map(item => `
                             <div class="relative">
                                 <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-riize-orange"></div>
                                 <span class="text-xs font-bold text-riize-orange uppercase tracking-wider">${item.era}</span>
@@ -973,45 +986,55 @@ function renderMemberDetail() {
                     </h4>
                     
                     <div class="space-y-5">
-                        <!-- 1.1 Brand Ambassador (Image Pop-up Preview + Click to Expand Modal) -->
+                        <!-- 1.1 Brand Ambassador -->
+                        ${brands.length > 0 ? `
                         <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-2">
                             <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
                                 <i class="fas fa-bullhorn text-xs mr-2"></i> ${currentSoloText.brands}
                             </h5>
                             <div class="space-y-2 pt-1">
-                                ${solo.brands.map(b => `
+                                ${brands.map(b => {
+                                    const firstImg = (b.images && b.images.length > 0) ? b.images[0] : '';
+                                    return `
                                     <div class="relative group inline-block w-full">
-                                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/10 hover:border-riize-orange transition-all flex items-center justify-between cursor-pointer">
-                                            <span class="text-xs sm:text-sm text-gray-200 font-medium">${b.title[lang]}</span>
-                                            <span class="text-[10px] text-gray-400 bg-white/10 px-2 py-0.5 rounded-full flex items-center space-x-1">
-                                                <i class="fas fa-image"></i>
-                                                <span>ดูรูปตัวอย่าง</span>
+                                        <!-- เพิ่ม onclick ที่ตัวแถบรายการ เพื่อเปิดรูปแรกเป็น Modal ได้ทันที -->
+                                        <div ${firstImg ? `onclick="openImageModal('${firstImg}')"` : ''} 
+                                             class="p-2.5 rounded-lg bg-white/5 border border-white/10 hover:border-riize-orange hover:bg-white/10 transition-all flex items-center justify-between cursor-pointer">
+                                            <span class="text-xs sm:text-sm text-gray-200 font-medium">${b.title?.[lang] || b.title}</span>
+                                            <span class="text-[10px] text-gray-400 bg-white/10 px-2 py-0.5 rounded-full flex items-center space-x-1 group-hover:text-riize-orange group-hover:bg-riize-orange/20 transition-all">
+                                                <i class="fas fa-search-plus"></i>
+                                                <span>ดูรูปภาพ</span>
                                             </span>
                                         </div>
 
                                         <!-- Pop-up Hover Preview Box -->
-                                        <div class="hidden group-hover:flex absolute left-0 bottom-full mb-2 z-40 p-2 bg-gray-900 border border-riize-orange rounded-xl shadow-2xl space-x-2 pointer-events-auto">
+                                        ${(b.images && b.images.length > 0) ? `
+                                        <div class="hidden group-hover:flex absolute right-0 bottom-full mb-2 z-30 p-2 bg-gray-900/95 border border-riize-orange rounded-xl shadow-2xl space-x-2 pointer-events-auto">
                                             ${b.images.map(img => `
-                                                <div class="relative overflow-hidden rounded-lg group/img cursor-pointer" onclick="openImageModal('${img}')">
-                                                    <img src="${img}" class="w-28 h-20 sm:w-36 sm:h-24 object-cover border border-white/10 hover:scale-105 transition-transform">
-                                                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity">
+                                                <button type="button" class="relative overflow-hidden rounded-lg group/img cursor-pointer focus:outline-none" onclick="openImageModal('${img}'); event.stopPropagation();">
+                                                    <img src="${img}" class="w-28 h-20 sm:w-36 sm:h-24 object-cover border border-white/10 hover:scale-105 transition-transform pointer-events-none">
+                                                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none">
                                                         <i class="fas fa-search-plus text-white text-xs"></i>
                                                     </div>
-                                                </div>
+                                                </button>
                                             `).join('')}
                                         </div>
+                                        ` : ''}
                                     </div>
-                                `).join('')}
+                                    `;
+                                }).join('')}
                             </div>
                         </div>
+                        ` : ''}
 
-                        <!-- 1.2 Solo Songs (Spotify Embed Player) -->
+                        <!-- 1.2 Solo Songs -->
+                        ${songs.length > 0 ? `
                         <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-3">
                             <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
                                 <i class="fab fa-spotify text-green-500 text-sm mr-2"></i> ${currentSoloText.songs}
                             </h5>
                             <div class="space-y-3">
-                                ${solo.songs.map(s => `
+                                ${songs.map(s => `
                                     <div class="space-y-1">
                                         <p class="text-xs text-gray-300 font-semibold">${s.title}</p>
                                         <iframe src="https://open.spotify.com/embed/track/${s.spotifyTrackId}?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="rounded-xl shadow-md"></iframe>
@@ -1019,16 +1042,18 @@ function renderMemberDetail() {
                                 `).join('')}
                             </div>
                         </div>
+                        ` : ''}
 
-                        <!-- 1.3 Shows / MC (YouTube Direct Link) -->
+                        <!-- 1.3 Shows / MC -->
+                        ${shows.length > 0 ? `
                         <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-2">
                             <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
                                 <i class="fab fa-youtube text-red-500 text-sm mr-2"></i> ${currentSoloText.shows}
                             </h5>
                             <div class="space-y-2 pt-1">
-                                ${solo.shows.map(v => `
+                                ${shows.map(v => `
                                     <a href="${v.url}" target="_blank" class="p-2.5 rounded-lg bg-white/5 border border-white/10 hover:border-red-500 hover:bg-red-500/10 transition-all flex items-center justify-between group">
-                                        <span class="text-xs sm:text-sm text-gray-200 group-hover:text-white font-medium">${v.title[lang]}</span>
+                                        <span class="text-xs sm:text-sm text-gray-200 group-hover:text-white font-medium">${v.title?.[lang] || v.title}</span>
                                         <span class="text-xs text-red-400 group-hover:text-red-300 flex items-center space-x-1">
                                             <span>เปิดบน YouTube</span>
                                             <i class="fas fa-external-link-alt text-[10px]"></i>
@@ -1037,36 +1062,13 @@ function renderMemberDetail() {
                                 `).join('')}
                             </div>
                         </div>
+                        ` : ''}
                     </div>
                 </div>
             </div>
         </div>
     `;
 }
-function openImageModal(imgUrl) {
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-img-element');
-    if (modal && modalImg) {
-        modalImg.src = imgUrl;
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // ป้องกันการสกอร์ลหน้าเว็บด้านหลัง
-    }
-}
-
-function closeImageModal() {
-    const modal = document.getElementById('image-modal');
-    if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = ''; // คืนค่าการสกอร์ลหน้าเว็บ
-    }
-}
-
-// กดปุ่ม Esc บนคีย์บอร์ดเพื่อปิดป๊อปอัปได้ด้วย
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeImageModal();
-    }
-});
 
         /* =======================================================
            2. DISCOGRAPHY DATA & RENDER
