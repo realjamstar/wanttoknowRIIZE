@@ -990,7 +990,7 @@ function renderMemberDetail() {
                                         </div>
 
                                         <!-- Pop-up Hover Preview Box -->
-                                        <div class="hidden group-hover:flex absolute left-0 bottom-full mb-2 z-50 p-2 bg-gray-900 border border-riize-orange rounded-xl shadow-2xl space-x-2 animate-fade-in">
+                                        <div class="hidden group-hover:flex absolute left-0 bottom-full mb-2 z-40 p-2 bg-gray-900 border border-riize-orange rounded-xl shadow-2xl space-x-2 pointer-events-auto">
                                             ${b.images.map(img => `
                                                 <div class="relative overflow-hidden rounded-lg group/img cursor-pointer" onclick="openImageModal('${img}')">
                                                     <img src="${img}" class="w-28 h-20 sm:w-36 sm:h-24 object-cover border border-white/10 hover:scale-105 transition-transform">
@@ -1605,6 +1605,17 @@ function renderDiscography() {
             <i class="fas fa-times text-lg"></i>
         </button>
         <img id="modal-img-element" src="" alt="Expanded View" class="max-w-full max-h-[85vh] rounded-2xl border-2 border-riize-orange/50 shadow-2xl object-contain">
+    </div>
+</div>
+<!-- Modal สำหรับแสดงรูปขยายลอยบนหน้าเว็บ -->
+<div id="image-modal" class="fixed inset-0 z-[9999] hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4" onclick="closeImageModal()">
+    <div class="relative max-w-4xl max-h-[90vh] p-2" onclick="event.stopPropagation()">
+        <!-- ปุ่มปิด [X] -->
+        <button onclick="closeImageModal()" class="absolute -top-3 -right-3 bg-riize-orange text-black font-extrabold w-9 h-9 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-10">
+            <i class="fas fa-times text-base"></i>
+        </button>
+        <!-- รูปขยาย -->
+        <img id="modal-img-element" src="" alt="Expanded View" class="max-w-full max-h-[80vh] rounded-2xl border-2 border-riize-orange/60 shadow-2xl object-contain mx-auto">
     </div>
 </div>
 </body>
