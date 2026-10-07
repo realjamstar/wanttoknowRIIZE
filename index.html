@@ -981,137 +981,139 @@ function renderMemberDetail() {
     const currentSoloText = soloLabels[lang] || soloLabels['th'];
 
     detailBox.innerHTML = `
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <!-- Left Column: Member Info Card -->
-            <div class="space-y-4 text-center lg:text-left sticky top-24">
-                <img src="${member.image}" alt="${member.name}" class="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl object-cover mx-auto lg:mx-0 border-2 border-riize-orange shadow-2xl">
-                <div>
-                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white">${member.name}</h3>
-                    <p class="text-riize-orange font-medium text-sm">${member.nativeName || ''}</p>
-                </div>
-            </div>
-
-            <!-- Right Column: Timeline & Interactive Solo Works -->
-            <div class="lg:col-span-2 space-y-6">
-                <!-- Basic Info Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
+        <div class="glass-panel p-4 sm:p-6 rounded-2xl border border-riize-border/60 bg-riize-dark/40 max-h-[78vh] overflow-y-auto custom-scrollbar">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <!-- Left Column: Member Info Card -->
+                <div class="space-y-4 text-center lg:text-left bg-black/20 p-4 rounded-xl border border-white/5">
+                    <img src="${member.image}" alt="${member.name}" class="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl object-cover mx-auto lg:mx-0 border-2 border-riize-orange shadow-2xl">
                     <div>
-                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-pos'] || 'POSITION'}</p>
-                        <p class="font-semibold text-white">${member.role?.[lang] || '-'}</p>
-                    </div>
-                    <div>
-                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-dob'] || 'DATE OF BIRTH'}</p>
-                        <p class="font-semibold text-white">${member.dob?.[lang] || '-'}</p>
-                    </div>
-                    <div>
-                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-nat'] || 'NATIONALITY'}</p>
-                        <p class="font-semibold text-white">${member.nationality?.[lang] || '-'}</p>
-                    </div>
-                    <div>
-                        <p class="text-xs text-gray-400 uppercase">${dict['member-label-agency'] || 'AGENCY'}</p>
-                        <p class="font-semibold text-white">SM Entertainment</p>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">${member.name}</h3>
+                        <p class="text-riize-orange font-medium text-sm mt-1">${member.nativeName || ''}</p>
                     </div>
                 </div>
 
-                <!-- Timeline Section -->
-                <div>
-                    <h4 class="text-lg font-bold text-white mb-3 flex items-center">
-                        <i class="fas fa-history text-riize-orange mr-2"></i> ${dict['member-timeline-title'] || 'Timeline'}
-                    </h4>
-                    <div class="space-y-3 relative border-l-2 border-riize-orange/30 ml-3 pl-4">
-                        ${(member.timeline?.[lang] || []).map(item => `
-                            <div class="relative">
-                                <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-riize-orange"></div>
-                                <span class="text-xs font-bold text-riize-orange uppercase tracking-wider">${item.era}</span>
-                                <p class="text-sm text-gray-300 mt-0.5">${item.detail}</p>
-                            </div>
-                        `).join('')}
+                <!-- Right Column: Timeline & Interactive Solo Works -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Basic Info Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-riize-dark/60 p-4 rounded-xl border border-riize-border">
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase">${dict['member-label-pos'] || 'POSITION'}</p>
+                            <p class="font-semibold text-white">${member.role?.[lang] || '-'}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase">${dict['member-label-dob'] || 'DATE OF BIRTH'}</p>
+                            <p class="font-semibold text-white">${member.dob?.[lang] || '-'}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase">${dict['member-label-nat'] || 'NATIONALITY'}</p>
+                            <p class="font-semibold text-white">${member.nationality?.[lang] || '-'}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase">${dict['member-label-agency'] || 'AGENCY'}</p>
+                            <p class="font-semibold text-white">SM Entertainment</p>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Interactive Solo Works Section -->
-                <div class="pt-4 border-t border-riize-border/60">
-                    <h4 class="text-lg font-bold text-white mb-4 flex items-center">
-                        <i class="fas fa-star text-riize-orange mr-2"></i> ${currentSoloText.mainTitle}
-                    </h4>
-                    
-                    <div class="space-y-5">
-                        <!-- 1. Brand Ambassador (แสดงรูปภาพใต้ชื่องานทันที) -->
-                        ${brands.length > 0 ? `
-                        <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-3">
-                            <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
-                                <i class="fas fa-bullhorn text-xs mr-2"></i> ${currentSoloText.brands}
-                            </h5>
-                            <div class="space-y-4 pt-1">
-                                ${brands.map(b => `
-                                    <div class="p-3 bg-white/5 border border-white/10 rounded-xl space-y-2">
-                                        <p class="text-xs sm:text-sm text-gray-200 font-semibold flex items-center">
-                                            <i class="fas fa-tag text-riize-orange text-xs mr-2"></i> ${b.title?.[lang] || b.title}
-                                        </p>
-                                        ${b.images && b.images.length > 0 ? `
-                                            <div class="grid grid-cols-2 gap-2 pt-1">
-                                                ${b.images.map((img, imgIdx) => `
-                                                    <div class="overflow-hidden rounded-lg border border-white/10 bg-black/40">
-                                                        <img src="${img}" alt="Preview ${imgIdx + 1}" class="w-full h-28 sm:h-36 object-cover hover:scale-105 transition-transform duration-300">
-                                                    </div>
-                                                `).join('')}
-                                            </div>
-                                        ` : ''}
-                                    </div>
-                                `).join('')}
-                            </div>
+                    <!-- Timeline Section -->
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-3 flex items-center">
+                            <i class="fas fa-history text-riize-orange mr-2"></i> ${dict['member-timeline-title'] || 'Timeline'}
+                        </h4>
+                        <div class="space-y-3 relative border-l-2 border-riize-orange/30 ml-3 pl-4">
+                            ${(member.timeline?.[lang] || []).map(item => `
+                                <div class="relative">
+                                    <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-riize-orange"></div>
+                                    <span class="text-xs font-bold text-riize-orange uppercase tracking-wider">${item.era}</span>
+                                    <p class="text-sm text-gray-300 mt-0.5">${item.detail}</p>
+                                </div>
+                            `).join('')}
                         </div>
-                        ` : ''}
+                    </div>
 
-                        <!-- 2. Solo Songs & OST (Embed Spotify Widget) -->
-                        ${songs.length > 0 ? `
-                        <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-3">
-                            <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
-                                <i class="fab fa-spotify text-green-500 text-sm mr-2"></i> ${currentSoloText.songs}
-                            </h5>
-                            <div class="space-y-3 pt-1">
-                                ${songs.map(s => `
-                                    <div class="p-3 bg-white/5 border border-white/10 rounded-xl space-y-2">
-                                        <p class="text-xs sm:text-sm text-gray-200 font-semibold flex items-center">
-                                            <i class="fas fa-music text-green-400 text-xs mr-2"></i> ${s.title?.[lang] || s.title}
-                                        </p>
-                                        ${s.spotifyId ? `
-                                            <div class="rounded-lg overflow-hidden">
-                                                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${s.spotifyId}?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                                            </div>
-                                        ` : ''}
-                                    </div>
-                                `).join('')}
+                    <!-- Interactive Solo Works Section -->
+                    <div class="pt-4 border-t border-riize-border/60">
+                        <h4 class="text-lg font-bold text-white mb-4 flex items-center">
+                            <i class="fas fa-star text-riize-orange mr-2"></i> ${currentSoloText.mainTitle}
+                        </h4>
+                        
+                        <div class="space-y-5">
+                            <!-- 1. Brand Ambassador (แสดงรูปภาพใต้ชื่องานทันที) -->
+                            ${brands.length > 0 ? `
+                            <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-3">
+                                <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
+                                    <i class="fas fa-bullhorn text-xs mr-2"></i> ${currentSoloText.brands}
+                                </h5>
+                                <div class="space-y-4 pt-1">
+                                    ${brands.map(b => `
+                                        <div class="p-3 bg-white/5 border border-white/10 rounded-xl space-y-2">
+                                            <p class="text-xs sm:text-sm text-gray-200 font-semibold flex items-center">
+                                                <i class="fas fa-tag text-riize-orange text-xs mr-2"></i> ${b.title?.[lang] || b.title}
+                                            </p>
+                                            ${b.images && b.images.length > 0 ? `
+                                                <div class="grid grid-cols-2 gap-2 pt-1">
+                                                    ${b.images.map((img, imgIdx) => `
+                                                        <div class="overflow-hidden rounded-lg border border-white/10 bg-black/40">
+                                                            <img src="${img}" alt="Preview ${imgIdx + 1}" class="w-full h-28 sm:h-36 object-cover hover:scale-105 transition-transform duration-300">
+                                                        </div>
+                                                    `).join('')}
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
-                        </div>
-                        ` : ''}
+                            ` : ''}
 
-                        <!-- 3. Shows / MC (Embed YouTube Video Widget) -->
-                        ${shows.length > 0 ? `
-                        <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-3">
-                            <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
-                                <i class="fab fa-youtube text-red-500 text-sm mr-2"></i> ${currentSoloText.shows}
-                            </h5>
-                            <div class="space-y-4 pt-1">
-                                ${shows.map(v => `
-                                    <div class="p-3 bg-white/5 border border-white/10 rounded-xl space-y-2">
-                                        <p class="text-xs sm:text-sm text-gray-200 font-semibold flex items-center">
-                                            <i class="fas fa-play-circle text-red-400 text-xs mr-2"></i> ${v.title?.[lang] || v.title}
-                                        </p>
-                                        ${v.youtubeId ? `
-                                            <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10 bg-black">
-                                                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${v.youtubeId}" title="${v.title?.[lang] || v.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                            </div>
-                                        ` : (v.url ? `
-                                            <a href="${v.url}" target="_blank" class="inline-flex items-center text-xs text-red-400 hover:underline">
-                                                <span>ดูบน YouTube</span> <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
-                                            </a>
-                                        ` : '')}
-                                    </div>
-                                `).join('')}
+                            <!-- 2. Solo Songs & OST (Embed Spotify Widget) -->
+                            ${songs.length > 0 ? `
+                            <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-3">
+                                <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
+                                    <i class="fab fa-spotify text-green-500 text-sm mr-2"></i> ${currentSoloText.songs}
+                                </h5>
+                                <div class="space-y-3 pt-1">
+                                    ${songs.map(s => `
+                                        <div class="p-3 bg-white/5 border border-white/10 rounded-xl space-y-2">
+                                            <p class="text-xs sm:text-sm text-gray-200 font-semibold flex items-center">
+                                                <i class="fas fa-music text-green-400 text-xs mr-2"></i> ${s.title?.[lang] || s.title}
+                                            </p>
+                                            ${s.spotifyId ? `
+                                                <div class="rounded-lg overflow-hidden">
+                                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${s.spotifyId}?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
+                            ` : ''}
+
+                            <!-- 3. Shows / MC (Embed YouTube Video Widget) -->
+                            ${shows.length > 0 ? `
+                            <div class="p-4 bg-black/30 rounded-xl border border-white/5 space-y-3">
+                                <h5 class="text-xs font-bold text-riize-orange uppercase tracking-wide flex items-center">
+                                    <i class="fab fa-youtube text-red-500 text-sm mr-2"></i> ${currentSoloText.shows}
+                                </h5>
+                                <div class="space-y-4 pt-1">
+                                    ${shows.map(v => `
+                                        <div class="p-3 bg-white/5 border border-white/10 rounded-xl space-y-2">
+                                            <p class="text-xs sm:text-sm text-gray-200 font-semibold flex items-center">
+                                                <i class="fas fa-play-circle text-red-400 text-xs mr-2"></i> ${v.title?.[lang] || v.title}
+                                            </p>
+                                            ${v.youtubeId ? `
+                                                <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10 bg-black">
+                                                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${v.youtubeId}" title="${v.title?.[lang] || v.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                                </div>
+                                            ` : (v.url ? `
+                                                <a href="${v.url}" target="_blank" class="inline-flex items-center text-xs text-red-400 hover:underline">
+                                                    <span>ดูบน YouTube</span> <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                                                </a>
+                                            ` : '')}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            ` : ''}
                         </div>
-                        ` : ''}
                     </div>
                 </div>
             </div>
